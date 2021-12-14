@@ -1,0 +1,160 @@
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   height: 100vh;
+   width: 100vw;
+   background: linear-gradient(to bottom right, lightgray, violet);
+}
+
+.flexCenter {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-content: center;
+   text-align: center;
+}
+
+.hide {
+   visibility: hidden;
+}
+
+
+
+a {
+   text-decoration: none;
+   color: black;
+}
+
+li {
+   list-style: none;
+}
+
+button {
+   cursor: pointer;
+}
+
+
+
+/* Raleway Medium */
+@font-face {
+   font-family: "Raleway-Medium";
+   src: url("../fonts/Raleway-Medium.ttf");
+}
+
+/* Roboto Medium */
+@font-face {
+   font-family: "Roboto-Medium";
+   src: url("../fonts/Roboto-Medium.ttf");
+}
+
+
+
+h1 {
+   font-family: "Roboto-Medium";
+   line-height: 100%;
+   font-weight: 600;
+   font-size: 170%;
+}
+
+h2, h3, h4, h5, h6 {
+   font-family: "Roboto-Medium";
+   line-height: 100%;
+   font-weight: 400;
+   font-size: 120%;
+}
+
+p {
+   font-family: "Raleway-Medium";
+   line-height: 100%;
+   font-weight: 400;
+   font-size: 100%;
+}
+
+
+
+/* ============================================ */
+/*          ---  Button Class  ---              */
+/* ============================================ */
+.btn {
+   border: none;
+   height: 45px;
+   width: 220px;
+   border-radius: 12px;
+   
+   font-family: "Roboto-Medium";
+   line-height: 100%;
+   font-weight: 400;
+   font-size: 145%;
+
+   background: linear-gradient(to bottom, rgb(185, 23, 255), pink, rgb(185, 23, 255));
+}
+
+.green-btn {
+   background: linear-gradient(to bottom right, greenyellow, rgb(0, 170, 0));
+}
+
+.red-btn {
+   background: linear-gradient(to bottom right, pink, red);
+}
+
+.orange-btn {
+   background: linear-gradient(to top right, rgb(255, 94, 0), rgb(255, 217, 0));
+}
+
+.blue-btn {
+   background: linear-gradient(to bottom right, dodgerblue, lightskyblue);
+}
+
+.violet-btn {
+   background: linear-gradient(to bottom right, pink, rgb(185, 23, 255));
+}
+
+.btn:hover {
+   box-shadow: gray 5px 5px 8px;
+}
+
+.btn:active {
+   border-top: solid grey 5px;
+   border-left: solid grey 5px;
+   transition-duration: 0s;
+}
+
+
+
+/* ============================================ */
+/*          ---  Input / Label  ---              */
+/* ============================================ */
+.field-div {
+   width: 80%;
+}
+
+label,
+input {
+   width: 100%;
+}
+
+label {
+   font-family: "Roboto-Medium";
+   line-height: 100%;
+   font-weight: 400;
+   font-size: 120%;
+
+   text-align: left;
+   margin-bottom: 10px;
+}
+
+input {
+   font-family: "Raleway-Medium";
+   line-height: 100%;
+   font-weight: 400;
+   font-size: 110%;
+
+   border: none;
+   height: 35px;
+   padding-left: 15px;
+   border-radius: 8px;
+}

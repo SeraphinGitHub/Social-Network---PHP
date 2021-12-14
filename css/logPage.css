@@ -1,0 +1,26 @@
+
+.login-container,
+.signin-container {
+   position: absolute;
+   align-content: space-around;
+   height: 560px;
+   width: 460px;
+
+   border-radius: 20px;
+   background: linear-gradient(to bottom right, darkturquoise, lightblue, lightgray);
+   box-shadow: black 0px 0px 15px;
+}
+
+.login-form {
+   height: 300px;
+   align-content: space-between;
+}
+
+.signin-form {
+   height: 400px;
+   align-content: space-between;
+}
+
+.back-btn {
+   background: linear-gradient(to bottom, rgb(255, 94, 0), rgb(255, 217, 0), rgb(255, 94, 0));
+}
