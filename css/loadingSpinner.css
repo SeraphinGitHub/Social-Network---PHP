@@ -1,5 +1,5 @@
 
-.backLoad {
+.backload {
    z-index: 80;
    position: fixed;
    top: 0;
@@ -47,14 +47,14 @@
 
 .ring-container-1 {
    z-index: 90;
-   transform: translateY(-13px);
-   animation: spin_ring_1 1s linear ;
+   transform: translateY(-13px) scaleY(25%);
+   animation: spin_ring_1 1s linear infinite;
 }
 
 .ring-container-2 {
    z-index: 87;
-   transform: translateY(13px);
-   animation: spin_ring_2 1s linear ;
+   transform: translateY(13px) scaleY(25%);
+   animation: spin_ring_2 1s linear infinite;
 }
 
 .ring-1,
@@ -78,19 +78,19 @@
 }
 
 @keyframes logo_anim {
-   0% { transform: translateY(0) };
-   25% { transform: translateY(10px) };
-   50% { transform: translateY(0px) };
-   75% { transform: translateY(-10px) };
-   100% { transform: translateY(0) };
+   0% { transform: translateY(0) }
+   25% { transform: translateY(10px) }
+   50% { transform: translateY(0px) }
+   75% { transform: translateY(-10px) }
+   100% { transform: translateY(0) }
 }
 
 @keyframes spin_ring_1 {
-   0% { transform: translateY(-13px) scaleY(25%) rotate(0deg) };
-   100% { transform: translateY(-13px) scaleY(25%) rotate(-360deg) };
+   0% { transform: translateY(-13px) scaleY(25%) rotate(0deg) }
+   100% { transform: translateY(-13px) scaleY(25%) rotate(-360deg) }
 }
 
 @keyframes spin_ring_2 {
-   0% { transform: translateY(13px) scaleY(25%) rotate(0deg) };
-   100% { transform: translateY(13px) scaleY(25%) rotate(360deg) };
+   0% { transform: translateY(13px) scaleY(25%) rotate(0deg) }
+   100% { transform: translateY(13px) scaleY(25%) rotate(360deg) }
 }
