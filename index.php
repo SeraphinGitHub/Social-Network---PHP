@@ -1,76 +1,67 @@
 <?php
-   $title = "Social Network";
 
-   $script = "
-      <script src='javascript/loginHandler.js' async></script>
-   ";
-   
-   @require_once "PHP_Templates/_header.php";
-   // @require_once "PHP_Templates/_loadingSpinner.php";
-?>
+$title = "Social Network";
 
-<section class="flexCenter login-container">
-   <button class="flexCenter btn create-account-btn">Créer un compte</button>
+$link = '
+   <link rel="stylesheet" type="text/css" href="css/logPage.css">
+';
+$script = '
+   <script src="javascript/loginHandler.js" async></script>
+';
 
-   <form class="flexCenter login-form" method="POST">
-      <div class="flexCenter field-div">
-         <label for="email">Adresse E-mail</label>
-         <input type="email" name="email" id="email" placeholder="Entrer votre E-mail">
-      </div>
-      
-      <div class="flexCenter field-div">
-         <label for="password">Mot de passe</label>
-         <input type="password" name="password" id="password" placeholder="Entrer votre mot de passe">
-      </div>
-
-      <button class="btn login-btn" type="submit" name="loginBtn">Se connecter</button>
-   </form>
-</section>
-
-<section class="flexCenter signin-container hide">
-   <button class="flexCenter btn back-btn">Retour</button>
-
-   <form class="flexCenter signin-form" method="POST">
-      <div class="flexCenter field-div">
-         <label for="email">Adresse E-mail</label>
-         <input type="email" name="email" id="email" placeholder="Entrer votre E-mail">
-      </div>
-
-      <div class="flexCenter field-div">
-         <label for="confirmEmail">Confirmation E-mail</label>
-         <input type="email" name="confirmEmail" id="confirmEmail" placeholder="Confirmer votre E-mail">
-      </div>
-      
-      <div class="flexCenter field-div">
-         <label for="password">Mot de passe</label>
-         <input type="password" name="password" id="password" placeholder="Entrer votre mot de passe">
-      </div>
-
-      <div class="flexCenter field-div">
-         <label for="confirmPsw">Confirmation mot de passe</label>
-         <input type="password" name="confirmPsw" id="confirmPsw" placeholder="Confirmer votre mot de passe">
-      </div>
-
-      <button class="btn signin-btn" type="submit" name="signinBtn">S'inscrire</button>
-   </form>
-</section>
-
-<?php
-@require_once "PHP_Templates/_footer.php";
+// ===================================================================
+// Scripts PHP
+// ===================================================================
 @require_once "connect.php";
 
-if(isset($_POST['loginBtn']) || isset($_POST['signinBtn'])) {
 
-   if(isset($_POST['loginBtn'])) $id = 1;
+// ===================================================================
+// Code
+// ===================================================================
+function searchUser($dbArg) {
+   @require_once "PHP_Templates/_loadingSpinner.php";
 
-   if(isset($_POST['signinBtn'])) $id = 2;
+   // $aze = $_POST["email"];
+   // var_dump($_POST["email"]);
 
-   // @require_once "PHP_Templates/_loadingSpinner.php";
+   $sql = "SELECT `id` FROM users WHERE `email` = '$_POST[email]'";
+   $request = $dbArg -> query($sql);
+   $user = $request -> fetch();
 
-   header("Location: home.php?id=$id");
+   header("Location: home.php?id=$user[id]");
    exit;
-   
-   // $sql = "INSERT INTO users (email, password) VALUES ('test@azerty.com', '1234')";
-   // $stmt = $db -> exec($sql);
 }
 
+
+if(isset($_POST["loginBtn"])) {
+
+   try {
+      searchUser($db);
+   }
+
+   catch(PDOException $except) {
+      die($except -> getMessage());
+   }
+}
+
+if(isset($_POST["signinBtn"])) {
+
+   try {
+      $sql = "INSERT INTO users (email, password) VALUES ($_POST[email], $_POST[password])";
+      $request = $db -> exec($sql);
+   
+      searchUser($db);
+   }
+
+   catch(PDOException $except) {
+      die($except -> getMessage());
+   }
+}
+
+
+// ===================================================================
+// HTML Templates
+// ===================================================================
+@require_once "PHP_Templates/_header.php";
+@require_once "PHP_Templates/_logPage.php";
+@require_once "PHP_Templates/_footer.php";

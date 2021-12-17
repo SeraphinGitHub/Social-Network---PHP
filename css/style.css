@@ -1,4 +1,28 @@
 
+
+/* ===================================================== */
+/* --- PHP Debug --- */
+/* ===================================================== */
+table,
+pre {
+   z-index: 1000;
+   position: fixed;
+   font-size: 160%;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background: white;
+}
+
+pre {
+   padding: 10px !important;
+}
+/* ===================================================== */
+/* --- PHP Debug --- */
+/* ===================================================== */
+
+
+
 * {
    margin: 0;
    padding: 0;
@@ -19,7 +43,11 @@ body {
 }
 
 .hide {
-   visibility: hidden;
+   visibility: hidden !important;
+}
+
+.show {
+   visibility: visible !important;
 }
 
 

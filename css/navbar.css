@@ -1,0 +1,142 @@
+
+.navBar {
+   position: fixed;
+   justify-content: space-around !important;
+
+   top: 15px;
+   left: center;
+   height: 100px;
+   width: 97%;
+
+   border-radius: 20px;
+   border: double 4px black;
+}
+
+.navBar h2 {
+   width: 100%;
+   line-height: 140%;
+   font-family: "Raleway-Medium";
+   font-size: 140%;
+   font-weight: 600;
+   font-style: italic;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+   height: 100%;
+   width: 30%;
+}
+
+.settings-btn {
+   height: 40px;
+   width: 60%;
+   background: none;
+}
+
+.settings-btn:hover {
+   background: rgba(0, 0, 0, 0.5);
+   color: white;
+}
+
+
+/* =================================================== */
+/* --- Nav Left --- */
+/* =================================================== */
+.nav-left {
+   justify-content: space-around;
+   /* background-color: yellow; */
+}
+
+.user-caption {
+   width: auto;
+}
+
+.user-picture {
+   height: 85%;
+}
+
+.user-picture img {
+   object-fit: cover;
+   height: 100%;
+   width: 100%;
+   border-radius: 50%;
+   border: double 4px black;
+}
+
+
+/* =================================================== */
+/* --- Nav Center --- */
+/* =================================================== */
+.nav-center {
+   /* background-color: tomato; */
+}
+
+.nav-center input {
+   width: 80%;
+   border: double 4px black;
+}
+
+
+/* =================================================== */
+/* --- Nav Right --- */
+/* =================================================== */
+.nav-right {
+   position: relative;
+   align-content: space-around;
+   /* background-color: yellowgreen; */
+}
+
+.nav-colors-list {
+   visibility: hidden;
+   position: absolute;
+   top: 110px;
+   width: 50%;
+   padding: 4px;
+   padding-top: 0px;
+   border-radius: 10px;
+   border: solid 1px black;
+   background: linear-gradient(to bottom right, black, white, black);
+}
+
+.nav-colors-list button {
+   margin-top: 2px;
+   border: none;
+   height: 50px;
+   width: 100%;
+   border-radius: 8px;
+   border: solid 1px black;
+
+   font-family: "Roboto-Medium";
+   font-size: 120%;
+   font-weight: 400;
+}
+
+.nav-colors-list button:hover {
+   border: solid 4px red;
+}
+
+
+/* =============================== */
+/* --- Nav Colors Class --- */
+/* =============================== */
+.nav-orange {
+   background: linear-gradient(to bottom, rgb(255, 94, 0), rgb(255, 217, 0), white, rgb(255, 217, 0), rgb(255, 94, 0));
+}
+
+.nav-violet {
+   background: linear-gradient(to bottom, rgb(185, 23, 255), pink, white, pink, rgb(185, 23, 255));
+}
+
+.nav-light-blue {
+   background: linear-gradient(to bottom, darkturquoise, white, white, darkturquoise);
+}
+
+.nav-dark-blue {
+   background: linear-gradient(to bottom, rgb(30, 30, 30), dodgerblue, darkturquoise, white, white, darkturquoise, dodgerblue, rgb(30, 30, 30));
+}
+
+
+.nav-green {
+   background: linear-gradient(to bottom, green, lime, white, white, lime, green);
+}
