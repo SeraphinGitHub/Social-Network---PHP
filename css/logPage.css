@@ -2,7 +2,7 @@
 .login-container,
 .signin-container {
    position: absolute;
-   align-content: space-around;
+   align-content: space-between;
    height: 560px;
    width: 460px;
 
@@ -11,16 +11,38 @@
    box-shadow: black 0px 0px 15px;
 }
 
-.login-form {
-   height: 300px;
-   align-content: space-between;
-}
 
-.signin-form {
-   height: 400px;
-   align-content: space-between;
+/* ================================================= */
+/* --- Btns --- */
+/* ================================================= */
+.create-account-btn,
+.back-btn {
+   margin-top: 35px;
 }
 
 .back-btn {
    background: linear-gradient(to bottom, rgb(255, 94, 0), rgb(255, 217, 0), rgb(255, 94, 0));
+}
+
+.login-btn,
+.signin-btn {
+   margin-top: 15px;
+   margin-bottom: 30px;
+}
+
+
+/* ================================================= */
+/* --- Forms --- */
+/* ================================================= */
+.login-form,
+.signin-form {
+   align-content: space-between;
+}
+
+.login-form {
+   height: 400px;
+}
+
+.signin-form {
+   height: 460px;
 }

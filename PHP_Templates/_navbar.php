@@ -1,5 +1,5 @@
 
-<nav class="flexCenter navBar nav-violet">
+<nav class="flexCenter navBar <?= $custom["navBar"] ?>">
 
    <section class="flexCenter nav-left">
       <div class="flexCenter user-caption">
@@ -22,6 +22,7 @@
          
       <div class="nav-colors-list">
          <button class="nav-orange">Orange NavBar</button>
+         <button class="nav-red">Red NavBar</button>
          <button class="nav-violet">Violet NavBar</button>
          <button class="nav-light-blue">Light Blue NavBar</button>
          <button class="nav-dark-blue">Dark Blue NavBar</button>

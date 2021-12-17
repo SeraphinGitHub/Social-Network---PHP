@@ -18,14 +18,12 @@ $script = '
 // ===================================================================
 // Code
 // ===================================================================
-function searchUser($dbArg) {
+function searchForUser($db) {
    @require_once "PHP_Templates/_loadingSpinner.php";
 
-   // $aze = $_POST["email"];
-   // var_dump($_POST["email"]);
-
+   // Get user
    $sql = "SELECT `id` FROM users WHERE `email` = '$_POST[email]'";
-   $request = $dbArg -> query($sql);
+   $request = $db -> query($sql);
    $user = $request -> fetch();
 
    header("Location: home.php?id=$user[id]");
@@ -33,26 +31,27 @@ function searchUser($dbArg) {
 }
 
 
+// Login
 if(isset($_POST["loginBtn"])) {
-
    try {
-      searchUser($db);
+      // Get user
+      searchForUser($db);
    }
-
    catch(PDOException $except) {
       die($except -> getMessage());
    }
 }
 
+// Sign-in
 if(isset($_POST["signinBtn"])) {
-
    try {
+      // Save user
       $sql = "INSERT INTO users (email, password) VALUES ($_POST[email], $_POST[password])";
       $request = $db -> exec($sql);
-   
-      searchUser($db);
+      
+      // Get user
+      searchForUser($db);
    }
-
    catch(PDOException $except) {
       die($except -> getMessage());
    }

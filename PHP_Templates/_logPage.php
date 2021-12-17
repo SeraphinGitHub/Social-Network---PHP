@@ -4,6 +4,11 @@
 
    <form class="flexCenter login-form" method="POST">
       <div class="flexCenter field-div">
+         <label for="userName">Pseudo</label>
+         <input type="text" name="userName" id="userName" placeholder="Entrer votre pseudo">
+      </div>
+
+      <div class="flexCenter field-div">
          <label for="email">Adresse E-mail</label>
          <input type="email" name="email" id="email" placeholder="Entrer votre E-mail">
       </div>
@@ -21,6 +26,11 @@
    <button class="flexCenter btn back-btn">Retour</button>
 
    <form class="flexCenter signin-form" method="POST">
+      <div class="flexCenter field-div">
+         <label for="userName">Pseudo</label>
+         <input type="text" name="userName" id="userName" placeholder="Entrer votre pseudo">
+      </div>
+
       <div class="flexCenter field-div">
          <label for="email">Adresse E-mail</label>
          <input type="email" name="email" id="email" placeholder="Entrer votre E-mail">

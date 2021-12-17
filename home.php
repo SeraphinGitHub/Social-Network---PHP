@@ -19,11 +19,30 @@ $script = '
 // ===================================================================
 // Code
 // ===================================================================
-$id = $_GET["id"];
+$userID = $_GET["id"];
 
-$sql = "SELECT * FROM users WHERE `id` = $id";
+// Get user
+$sql = "SELECT * FROM users WHERE `id` = $userID";
 $request = $db -> query($sql);
 $user = $request -> fetch();
+
+// Get custom
+$sql = "SELECT * FROM customs WHERE `userID` = $userID";
+$request = $db -> query($sql);
+$custom = $request -> fetch();
+
+// Save custom
+if(isset($_POST["navClass"])) {
+   try {
+      // $sql = "UPDATE customs SET navBar = $_POST[navColor] WHERE userID = $userID";
+      // $request = $db -> exec($sql);
+
+      var_dump($_POST["navClass"]);
+   }
+   catch(PDOException $except) {
+      die($except -> getMessage());
+   }
+}
 
 
 // ===================================================================

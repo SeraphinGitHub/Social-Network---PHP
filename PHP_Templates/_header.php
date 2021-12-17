@@ -9,8 +9,9 @@
    
    <link rel="stylesheet" type="text/css" href="css/style.css">
    <link rel="stylesheet" type="text/css" href="css/loadingSpinner.css">
-   
    <?= $link ?>
+   
+   <script src="javascript/background.js" async></script>
    <?= $script ?>
    
    <title><?= $title ?></title>

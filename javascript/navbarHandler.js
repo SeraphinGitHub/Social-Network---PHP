@@ -3,6 +3,7 @@
 
 const colorObj = {
    "Orange": "nav-orange",
+   "Red": "nav-red",
    "Violet": "nav-violet",
    "Light Blue": "nav-light-blue",
    "Dark Blue": "nav-dark-blue",
@@ -51,11 +52,26 @@ const addNewColor = (btnText, navClass, btnColor, btnColorClass) => {
    
       const colorArray = Object.values(colorObj);
       colorArray.forEach(pair => removeOldColor(navClass, pair, btnColorClass));
+
+      saveColorChange(btnColorClass);
    }
 }
 
 const removeOldColor = (navClass, removeClass, btnColorClass) => {
    if(navClass.contains(removeClass) && btnColorClass !== removeClass) navClass.remove(removeClass);
+}
+
+const saveColorChange = (colorClass) => {
+   let xhr = new XMLHttpRequest();
+
+   xhr.open("POST", `${URL}/home.php`, true);
+   xhr.setRequestHeader("Content-Type", "application/json");
+
+   const data = {
+      navClass: colorClass,
+   }
+   
+   xhr.send(JSON.stringify(data));
 }
 
 window.addEventListener("load", () => {
