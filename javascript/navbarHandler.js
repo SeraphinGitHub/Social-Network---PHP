@@ -1,79 +1,105 @@
 
 "use strict"
 
-const colorObj = {
-   "Orange": "nav-orange",
-   "Red": "nav-red",
-   "Violet": "nav-violet",
-   "Light Blue": "nav-light-blue",
-   "Dark Blue": "nav-dark-blue",
-   "Green": "nav-green",
-};
+let customizeArray = [];
 
-const customizeNavbarColor = () => {
+const htmlElements = {
+   nav: document.querySelector(".nav-bar"),
+   post: document.querySelectorAll(".post"),
+   scroll: document.querySelector(".news-feed"),
+}
 
+const colorsRange = (elem) => {
+   const colorsObj = {
+
+      "Orange": `${elem}-orange`,
+      "Red": `${elem}-red`,
+      "Violet": `${elem}-violet`,
+      "Light Blue": `${elem}-light-blue`,
+      "Dark Blue": `${elem}-dark-blue`,
+      "Green": `${elem}-green`,
+
+   };
+   return colorsObj;
+}
+
+
+const customColorMenu = () => {
    const customColorBtn = document.querySelector(".custom-color-btn");
-   const navColorsList = document.querySelector(".nav-colors-list");
-   const navBar = document.querySelector(".navBar");
-   const colorBtn = document.querySelectorAll(".nav-colors-list button");
+   const colorsList = document.querySelector(".colors-list");
+   const colorBtn = document.querySelectorAll(".colors-list button");
    
-   let isColorsMenu = false;
-
+   let showColorsMenu = false;
+   
    customColorBtn.addEventListener("click", () => {
-
-      if(!isColorsMenu) navColorsList.classList.add("show");
-      if(isColorsMenu) navColorsList.classList.remove("show");
-      return isColorsMenu = !isColorsMenu;
+      if(!showColorsMenu) colorsList.classList.add("show");
+      if(showColorsMenu) colorsList.classList.remove("show");
+      return showColorsMenu = !showColorsMenu;
    });
-
+   
    colorBtn.forEach(btn => {
       btn.addEventListener("click", () => {
 
-         const btnText = btn.textContent;
-         const navClass = navBar.classList;
-         let pairsArray = Object.entries(colorObj);
-         
-         pairsArray.forEach(pair => {
-            let key = pair[0];
-            let value = pair[1];
-            addNewColor(btnText, navClass, key, value);
+         let elemPairs = Object.entries(htmlElements);
+
+         elemPairs.forEach(elemPair => {       
+            let elemName = elemPair[0];
+            let elemClass = elemPair[1];
+
+            let colorsPairs = Object.entries( colorsRange(elemName) );
+
+            colorsPairs.forEach(colorsPair => {
+               let colorName = colorsPair[0];
+               let colorClass = colorsPair[1];
+               
+               removeOldColor(elemName, elemClass, colorClass);
+               addNewColor(btn, elemName, elemClass, colorName, colorClass);
+            });
          });
 
-         navColorsList.classList.remove("show");
-         return isColorsMenu = false;
+         saveColorChange();
+         colorsList.classList.remove("show");
+         showColorsMenu = false;
       });
    });
 }
 
-const addNewColor = (btnText, navClass, btnColor, btnColorClass) => {
+const addNewColor = (btn, elemName, elemClass, colorName, colorClass) => {
    
-   if(btnText.includes(btnColor)) {
-      navClass.add(btnColorClass);
-   
-      const colorArray = Object.values(colorObj);
-      colorArray.forEach(pair => removeOldColor(navClass, pair, btnColorClass));
+   if(btn.textContent === colorName) {
+      if(elemName === "post") {
+         elemClass.forEach(elem => elem.classList.add(colorClass));
+      }
+      else elemClass.classList.add(colorClass);
 
-      saveColorChange(btnColorClass);
+      customizeArray.push(colorClass);
    }
 }
 
-const removeOldColor = (navClass, removeClass, btnColorClass) => {
-   if(navClass.contains(removeClass) && btnColorClass !== removeClass) navClass.remove(removeClass);
+const removeOldColor = (elemName, elemClass, colorClass) => {
+
+   if(elemName === "post") {
+      elemClass.forEach(elem => elem.classList.remove(colorClass));
+   }
+   else elemClass.classList.remove(colorClass);
 }
 
-const saveColorChange = (colorClass) => {
-   let xhr = new XMLHttpRequest();
+const saveColorChange = () => {
 
+   let xhr = new XMLHttpRequest();
    xhr.open("POST", `${URL}/home.php`, true);
    xhr.setRequestHeader("Content-Type", "application/json");
 
    const data = {
-      navClass: colorClass,
+      navClass: customizeArray[0],
+      postClass: customizeArray[1],
+      scrollClass: customizeArray[2],
    }
    
    xhr.send(JSON.stringify(data));
+   customizeArray = [];
 }
 
 window.addEventListener("load", () => {
-   customizeNavbarColor();
+   customColorMenu();
 });

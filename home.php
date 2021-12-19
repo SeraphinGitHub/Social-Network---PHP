@@ -4,6 +4,7 @@ $title = "Home";
 
 $link = '
    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+   <link rel="stylesheet" type="text/css" href="css/newsFeed.css">
 ';
 $script = '
    <script src="javascript/loadingHandler.js" async></script>
@@ -31,6 +32,11 @@ $sql = "SELECT * FROM customs WHERE `userID` = $userID";
 $request = $db -> query($sql);
 $custom = $request -> fetch();
 
+// Get newsFeed
+$sql = "SELECT * FROM posts";
+$request = $db -> query($sql);
+$posts = $request -> fetchAll();
+
 // Save custom
 if(isset($_POST["navClass"])) {
    try {
@@ -51,4 +57,5 @@ if(isset($_POST["navClass"])) {
 @require_once "PHP_Templates/_header.php";
 @require_once "PHP_Templates/_loadingSpinner.php";
 @require_once "PHP_Templates/_navbar.php";
+@require_once "PHP_Templates/_newsFeed.php";
 @require_once "PHP_Templates/_footer.php";

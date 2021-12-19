@@ -1,0 +1,82 @@
+
+/* =================================================== */
+/* --- Nav Colors Class --- */
+/* =================================================== */
+.nav-orange {
+   background: linear-gradient(to bottom, rgb(255, 94, 0), rgb(255, 217, 0), white, rgb(255, 217, 0), rgb(255, 94, 0));
+}
+
+.nav-red {
+   background: linear-gradient(to bottom, red, pink, white, pink, red);
+}
+
+.nav-violet {
+   background: linear-gradient(to bottom, rgb(185, 23, 255), pink, white, pink, rgb(185, 23, 255));
+}
+
+.nav-light-blue {
+   background: linear-gradient(to bottom, darkturquoise, white, white, darkturquoise);
+}
+
+.nav-dark-blue {
+   background: linear-gradient(to bottom, rgb(30, 30, 30), dodgerblue, darkturquoise, white, white, darkturquoise, dodgerblue, rgb(30, 30, 30));
+}
+
+.nav-green {
+   background: linear-gradient(to bottom, green, lime, white, white, lime, green);
+}
+
+
+/* =================================================== */
+/* --- Post Colors Class --- */
+/* =================================================== */
+.post-orange {
+   background: linear-gradient(to bottom right, rgb(255, 94, 0), rgb(255, 217, 0), white, rgb(255, 217, 0), rgb(255, 94, 0));
+}
+
+.post-red {
+   background: linear-gradient(to bottom right, red, pink, white, pink, red);
+}
+
+.post-violet {
+   background: linear-gradient(to bottom right, rgb(185, 23, 255), pink, white, pink, rgb(185, 23, 255));
+}
+
+.post-light-blue {
+   background: linear-gradient(to bottom right, darkturquoise, white, white, darkturquoise);
+}
+
+.post-dark-blue {
+   background: linear-gradient(to bottom right, rgb(30, 30, 30), dodgerblue, darkturquoise, white, white, darkturquoise, dodgerblue, rgb(30, 30, 30));
+}
+
+.post-green {
+   background: linear-gradient(to bottom right , green, lime, white, white, lime, green);
+}
+
+/* =================================================== */
+/* --- Scrollbar Colors Class --- */
+/* =================================================== */
+.scroll-orange {
+   scrollbar-color: orange transparent;
+}
+
+.scroll-red {
+   scrollbar-color: red transparent;
+}
+
+.scroll-violet {
+   scrollbar-color: rgb(185, 23, 255) transparent;
+}
+
+.scroll-light-blue {
+   scrollbar-color: darkturquoise transparent;
+}
+
+.scroll-dark-blue {
+   scrollbar-color: dodgerblue transparent;
+}
+
+.scroll-green {
+   scrollbar-color: lime transparent;
+}

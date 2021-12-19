@@ -1,5 +1,5 @@
 
-.navBar {
+.nav-bar {
    position: fixed;
    justify-content: space-around !important;
 
@@ -12,7 +12,7 @@
    border: double 4px black;
 }
 
-.navBar h2 {
+.nav-bar h2 {
    width: 100%;
    line-height: 140%;
    font-family: "Raleway-Medium";
@@ -87,11 +87,11 @@
    /* background-color: yellowgreen; */
 }
 
-.nav-colors-list {
+.colors-list {
    visibility: hidden;
    position: absolute;
    top: 110px;
-   width: 50%;
+   width: 45%;
    padding: 4px;
    padding-top: 0px;
    border-radius: 10px;
@@ -99,7 +99,7 @@
    background: linear-gradient(to bottom right, black, white, black);
 }
 
-.nav-colors-list button {
+.colors-list button {
    margin-top: 2px;
    border: none;
    height: 50px;
@@ -112,35 +112,6 @@
    font-weight: 400;
 }
 
-.nav-colors-list button:hover {
+.colors-list button:hover {
    border: solid 4px red;
-}
-
-
-/* =============================== */
-/* --- Nav Colors Class --- */
-/* =============================== */
-.nav-orange {
-   background: linear-gradient(to bottom, rgb(255, 94, 0), rgb(255, 217, 0), white, rgb(255, 217, 0), rgb(255, 94, 0));
-}
-
-.nav-red {
-   background: linear-gradient(to bottom, red, pink, white, pink, red);
-}
-
-.nav-violet {
-   background: linear-gradient(to bottom, rgb(185, 23, 255), pink, white, pink, rgb(185, 23, 255));
-}
-
-.nav-light-blue {
-   background: linear-gradient(to bottom, darkturquoise, white, white, darkturquoise);
-}
-
-.nav-dark-blue {
-   background: linear-gradient(to bottom, rgb(30, 30, 30), dodgerblue, darkturquoise, white, white, darkturquoise, dodgerblue, rgb(30, 30, 30));
-}
-
-
-.nav-green {
-   background: linear-gradient(to bottom, green, lime, white, white, lime, green);
 }
