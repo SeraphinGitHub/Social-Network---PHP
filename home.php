@@ -15,38 +15,50 @@ $script = '
 // Scripts PHP
 // ===================================================================
 @require_once "connect.php";
+@require_once "CRUD.php";
 
 
 // ===================================================================
 // Code
 // ===================================================================
-$userID = $_GET["id"];
+if(isset($_GET["id"])) {
 
-// Get user
-$sql = "SELECT * FROM users WHERE `id` = $userID";
-$request = $db -> query($sql);
-$user = $request -> fetch();
+   $userID = $_GET["id"];
 
-// Get custom
-$sql = "SELECT * FROM customs WHERE `userID` = $userID";
-$request = $db -> query($sql);
-$custom = $request -> fetch();
-
-// Get newsFeed
-$sql = "SELECT * FROM posts";
-$request = $db -> query($sql);
-$posts = $request -> fetchAll();
+   // Get user
+   $sql = "SELECT * FROM users WHERE `id` = $userID";
+   $request = $db -> query($sql);
+   $user = $request -> fetch();
+   
+   // Get custom
+   $sql = "SELECT * FROM customs WHERE `userID` = $userID";
+   $request = $db -> query($sql);
+   $custom = $request -> fetch();
+   
+   // Get newsFeed
+   $sql = "SELECT * FROM posts";
+   $request = $db -> query($sql);
+   $posts = $request -> fetchAll();
+}
 
 // Save custom
-if(isset($_POST["navClass"])) {
-   try {
-      // $sql = "UPDATE customs SET navBar = $_POST[navColor] WHERE userID = $userID";
-      // $request = $db -> exec($sql);
-
-      var_dump($_POST["navClass"]);
-   }
-   catch(PDOException $except) {
-      die($except -> getMessage());
+if($stringResponse) {
+   
+   var_dump( $_GET["id"] );
+   
+   foreach($arrayResponse as $customClass) {
+      if($customClass) {
+         
+         $column = array_search($customClass, $arrayResponse);
+         
+         try {
+            $sql = "UPDATE customs SET $column = '$customClass' WHERE userID = 1";
+            $request = $db -> exec($sql);
+         }
+         catch(PDOException $except) {
+            die($except -> getMessage());
+         }
+      }
    }
 }
 
@@ -54,8 +66,11 @@ if(isset($_POST["navClass"])) {
 // ===================================================================
 // HTML Templates
 // ===================================================================
-@require_once "PHP_Templates/_header.php";
-@require_once "PHP_Templates/_loadingSpinner.php";
-@require_once "PHP_Templates/_navbar.php";
-@require_once "PHP_Templates/_newsFeed.php";
-@require_once "PHP_Templates/_footer.php";
+if(isset($_GET["id"])) {
+
+   @require_once "PHP_Templates/_header.php";
+   @require_once "PHP_Templates/_loadingSpinner.php";
+   @require_once "PHP_Templates/_navbar.php";
+   @require_once "PHP_Templates/_newsFeed.php";
+   @require_once "PHP_Templates/_footer.php";
+}

@@ -1,5 +1,5 @@
 
-<nav class="flexCenter nav-bar <?= $custom["navBar"] ?>">
+<nav class="flexCenter nav-bar <?= $custom["navClass"] ?>">
 
    <section class="flexCenter nav-left">
       <div class="flexCenter user-caption">

@@ -23,7 +23,6 @@ const colorsRange = (elem) => {
    return colorsObj;
 }
 
-
 const customColorMenu = () => {
    const customColorBtn = document.querySelector(".custom-color-btn");
    const colorsList = document.querySelector(".colors-list");
@@ -87,8 +86,8 @@ const removeOldColor = (elemName, elemClass, colorClass) => {
 const saveColorChange = () => {
 
    let xhr = new XMLHttpRequest();
-   xhr.open("POST", `${URL}/home.php`, true);
-   xhr.setRequestHeader("Content-Type", "application/json");
+   xhr.open("POST", "home.php", true);
+   xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
    const data = {
       navClass: customizeArray[0],
@@ -96,7 +95,7 @@ const saveColorChange = () => {
       scrollClass: customizeArray[2],
    }
    
-   xhr.send(JSON.stringify(data));
+   xhr.send(JSON.stringify( data ));
    customizeArray = [];
 }
 
