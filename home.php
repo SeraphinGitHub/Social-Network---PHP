@@ -8,14 +8,13 @@ $link = '
 ';
 $script = '
    <script src="javascript/loadingHandler.js" async></script>
-   <script src="javascript/navbarHandler.js" async></script>
+   <script src="javascript/customHandler.js" async></script>
 ';
 
 // ===================================================================
 // Scripts PHP
 // ===================================================================
 @require_once "connect.php";
-@require_once "CRUD.php";
 
 
 // ===================================================================
@@ -34,6 +33,33 @@ if(isset($_GET["id"])) {
    $sql = "SELECT * FROM customs WHERE `userID` = $userID";
    $request = $db -> query($sql);
    $custom = $request -> fetch();
+
+   // if First time logged in
+   if(empty( $custom )) {
+      $color = 'light-blue';
+
+      // Set custom
+      $sql = "INSERT INTO customs (
+         userID,
+         navClass,
+         postClass,
+         scrollClass)
+         
+         VALUES (
+         '$userID',
+         'nav-$color',
+         'post-$color',
+         'scroll-$color'
+      )";
+      
+      $request = $db -> exec($sql);
+
+      // Get custom Again
+      $sql = "SELECT * FROM customs WHERE `userID` = $userID";
+      $request = $db -> query($sql);
+      $custom = $request -> fetch();
+   }
+
    
    // Get newsFeed
    $sql = "SELECT * FROM posts";
@@ -42,17 +68,18 @@ if(isset($_GET["id"])) {
 }
 
 // Save custom
-if($stringResponse) {
-   
-   var_dump( $_GET["id"] );
-   
-   foreach($arrayResponse as $customClass) {
+if($req_Str) {
+
+   $customClassArray = $req_Array[0];
+   $paramID = $req_Array[1]["id"];
+
+   foreach($customClassArray as $customClass) {
       if($customClass) {
          
-         $column = array_search($customClass, $arrayResponse);
+         $column = array_search($customClass, $customClassArray);
          
          try {
-            $sql = "UPDATE customs SET $column = '$customClass' WHERE userID = 1";
+            $sql = "UPDATE customs SET $column = '$customClass' WHERE userID = $paramID";
             $request = $db -> exec($sql);
          }
          catch(PDOException $except) {

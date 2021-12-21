@@ -18,12 +18,12 @@ $script = '
 // ===================================================================
 // Code
 // ===================================================================
-function searchForUser($db) {
+function searchForUser($db_Arg) {
    @require_once "PHP_Templates/_loadingSpinner.php";
 
-   // Get user From Pseudo
+   // Get user from UserName
    $sql = "SELECT * FROM users WHERE `userName` = '$_POST[userName]'";
-   $request = $db -> query($sql);
+   $request = $db_Arg -> query($sql);
    $user = $request -> fetch();
    
    // if($user["email"] === $_POST["email"]

@@ -36,6 +36,7 @@
 
 .settings-btn:hover {
    background: rgba(0, 0, 0, 0.5);
+   box-shadow: none;
    color: white;
 }
 

@@ -3,6 +3,7 @@
 
 let customizeArray = [];
 
+// If add new "querySelectorAll" ==> modify: addNewColor() & removeOldColor()
 const htmlElements = {
    nav: document.querySelector(".nav-bar"),
    post: document.querySelectorAll(".post"),
@@ -66,7 +67,7 @@ const customColorMenu = () => {
 const addNewColor = (btn, elemName, elemClass, colorName, colorClass) => {
    
    if(btn.textContent === colorName) {
-      if(elemName === "post") {
+      if(elemName === "post" /* || "new querySelectorAll element" */ ) {
          elemClass.forEach(elem => elem.classList.add(colorClass));
       }
       else elemClass.classList.add(colorClass);
@@ -77,7 +78,7 @@ const addNewColor = (btn, elemName, elemClass, colorName, colorClass) => {
 
 const removeOldColor = (elemName, elemClass, colorClass) => {
 
-   if(elemName === "post") {
+   if(elemName === "post" /* || "new querySelectorAll element" */ ) {
       elemClass.forEach(elem => elem.classList.remove(colorClass));
    }
    else elemClass.classList.remove(colorClass);
@@ -89,13 +90,17 @@ const saveColorChange = () => {
    xhr.open("POST", "home.php", true);
    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
-   const data = {
+   const customData = {
       navClass: customizeArray[0],
       postClass: customizeArray[1],
       scrollClass: customizeArray[2],
    }
+
+   const userData = {
+      id: getUrlParams("id"),
+   }
    
-   xhr.send(JSON.stringify( data ));
+   xhr.send(JSON.stringify( [customData, userData] ));
    customizeArray = [];
 }
 
