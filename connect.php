@@ -36,13 +36,13 @@ catch(PDOException $except) {
 // ===================================================================
 // Init DataBase
 // ===================================================================
-function initTable($db_Arg, $tableName_Arg, $sql_Arg) {
+function initTable($DB, $TABLE_NAME, $SQL) {
    
-   $sql = "SELECT id FROM $tableName_Arg";
-   $request = $db_Arg -> query($sql);
-
+   $sql = "SELECT id FROM $TABLE_NAME";
+   $request = $DB -> query($sql);
+   
    if(empty( $request )) {
-      $request = $db_Arg -> exec($sql_Arg);
+      $request = $DB -> exec($SQL);
    }
 }
 

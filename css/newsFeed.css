@@ -1,4 +1,5 @@
 
+/* --- <ul> --- */
 .news-feed {
    position: fixed;
    overflow-y: scroll;
@@ -14,7 +15,10 @@
    scrollbar-width: thin;
 }
 
+
+/* --- <li> --- */
 .post {
+   justify-content: space-between;
    text-align: left;
    margin: 30px;
    margin-top: 0px;
@@ -23,26 +27,48 @@
 }
 
 .post,
-.post h2,
-.post p {
+.frame {
    border: double 3px blue;
 }
 
-.post h2,
-.post p {
-   width: 100%;
-   margin: 12px;
+.frame {
+   margin: 15px;
    padding: 8px;
    border-radius: 10px;
+   font-size: 110%;
    background: white;
 }
 
-.post h2 {
-   margin-bottom: 0px;
-   font-size: 130%;
+
+/* --- Title / TimeStamp --- */
+.post-specs {
+   width: 65%;
 }
 
-.post p {
+.post-title {
+   width: 100%;
+   font-size: 130%;
+   margin-bottom: 0px;
+}
+
+.post-time-stamp {
+   width: 100%;
+   margin-bottom: 0px;
+}
+
+
+/* =========== Temporary ========== */
+.post-user-caption {
+   text-align: center;
+   width: 20%;
+   padding: 35px;
+   font-size: 130%;
+   margin-bottom: 0px;
+}
+/* =========== Temporary ========== */
+
+
+.post-content {
    padding: 30px;
    white-space: pre-wrap;
    font-size: 120%;

@@ -18,13 +18,16 @@ $script = '
 // ===================================================================
 // Code
 // ===================================================================
-function searchForUser($db_Arg) {
-   @require_once "PHP_Templates/_loadingSpinner.php";
+function searchForUser($DB) {
+   @require_once "php_templates/_loadingSpinner.php";
 
    // Get user from UserName
-   $sql = "SELECT * FROM users WHERE `userName` = '$_POST[userName]'";
-   $request = $db_Arg -> query($sql);
+   $sql = "SELECT * FROM users WHERE `userName` = :userName";
+   $request = $DB -> prepare($sql);
+   $request -> bindValue(":userName", $_POST["userName"], PDO::PARAM_STR);
+   $request -> execute();
    $user = $request -> fetch();
+
    
    // if($user["email"] === $_POST["email"]
    // && $user["password"] === $_POST["password"]) {
@@ -45,6 +48,7 @@ function searchForUser($db_Arg) {
    exit;
 }
 
+
 // Login
 if(isset($_POST["loginBtn"])) {
 
@@ -61,6 +65,7 @@ if(isset($_POST["loginBtn"])) {
       }
    // }
 }
+
 
 // Sign-in
 if(isset($_POST["signinBtn"])) {
@@ -89,6 +94,6 @@ if(isset($_POST["signinBtn"])) {
 // ===================================================================
 // HTML Templates
 // ===================================================================
-@require_once "PHP_Templates/_header.php";
-@require_once "PHP_Templates/_logPage.php";
-@require_once "PHP_Templates/_footer.php";
+@require_once "php_templates/_header.php";
+@require_once "php_templates/_logPage.php";
+@require_once "php_templates/_footer.php";
