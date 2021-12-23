@@ -14,7 +14,10 @@ $script = '
 // ===================================================================
 // Scripts PHP
 // ===================================================================
-@require_once "connect.php";
+require "php/scripts/connect.php";
+require "php/controllers/user-ctrl.php";
+require "php/controllers/custom-ctrl.php";
+require "php/controllers/post-ctrl.php";
 
 
 // ===================================================================
@@ -29,64 +32,21 @@ if(!isset( $userID ) || empty( $userID )) {
    exit;
 }
 
-
 // Get user
-$sql = "SELECT * FROM users WHERE `id` = :userID";
-$request = $db -> prepare($sql);
-$request -> bindValue(":userID", $userID, PDO::PARAM_INT);
-$request -> execute();
-$user = $request -> fetch();
-
+$user = getUser("id", $userID, PDO::PARAM_INT);
 
 // Get custom
-function getCustom($DB, $USER_ID) {
-   $sql = "SELECT * FROM customs WHERE `userID` = :userID";
-   $request = $DB -> prepare($sql);
-   $request -> bindValue(":userID", $USER_ID, PDO::PARAM_INT);
-   $request -> execute();
-   $custom = $request -> fetch();
-   return $custom;
-}
-
-$custom = getCustom($db, $userID);
-
-
-// if First time logged in
-if(empty( $custom )) {
-   $color = 'light-blue';
-
-   // Set default custom
-   $sql = "INSERT INTO customs (
-      userID,
-      navClass,
-      postClass,
-      scrollClass)
-      
-      VALUES (
-      '$userID',
-      'nav-$color',
-      'post-$color',
-      'scroll-$color'
-   )";
-   
-   $request = $db -> exec($sql);
-
-   // Get custom Again
-   $custom = getCustom($db, $userID);
-}
-
+$custom = defaultCustom($userID);
 
 // Get newsFeed
-$sql = "SELECT * FROM posts";
-$request = $db -> query($sql);
-$posts = $request -> fetchAll();
+$posts = getAllPosts();
 
 
 // ===================================================================
 // HTML Templates
 // ===================================================================
-@require_once "php_templates/_header.php";
-@require_once "php_templates/_loadingSpinner.php";
-@require_once "php_templates/_navbar.php";
-@require_once "php_templates/_newsFeed.php";
-@require_once "php_templates/_footer.php";
+@require_once "php/templates/_header.php";
+@require_once "php/templates/_loadingSpinner.php";
+@require_once "php/templates/_navbar.php";
+@require_once "php/templates/_newsFeed.php";
+@require_once "php/templates/_footer.php";

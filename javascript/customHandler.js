@@ -87,7 +87,7 @@ const removeOldColor = (elemName, elemClass, colorClass) => {
 const saveColorChange = () => {
 
    let xhr = new XMLHttpRequest();
-   xhr.open("POST", "saveCustom.php", true);
+   xhr.open("POST", "ajax.php", true);
    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
    const customData = {
