@@ -1,5 +1,6 @@
 
 .backload {
+   display: none;
    z-index: 80;
    position: fixed;
    top: 0;

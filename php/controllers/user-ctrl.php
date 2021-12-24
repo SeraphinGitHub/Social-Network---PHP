@@ -39,6 +39,14 @@ function searchUser() {
    // Get user
    $user = getUserID("userName", $_POST["userName"]);
 
+   echo '<script> window.addEventListener("load", () => enableSpinner() )</script>';
+
+   if(!isset( $user ) || empty( $user )) {
+      
+      echo '<h1 class="flexCenter server-alert"> Utilisateur inexistant </h1>';
+      echo '<script> window.addEventListener("load", () => disableSpinner() )</script>';
+   }
+
    // if($user["email"] === $_POST["email"]
    // && $user["password"] === $_POST["password"]) {
       
@@ -54,8 +62,10 @@ function searchUser() {
    //    echo "MdP invalide";
    // }
 
-   header("Location: home.php?id=$user[id]");
-   exit;
+   else {
+      header("Location: home.php?id=$user[id]");
+      exit;
+   }
 }
 
 

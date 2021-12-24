@@ -7,9 +7,10 @@ $link = '
    <link rel="stylesheet" type="text/css" href="css/newsFeed.css">
 ';
 $script = '
-   <script src="javascript/loadingHandler.js" async></script>
    <script src="javascript/customHandler.js" async></script>
 ';
+
+@require_once "php/templates/_header.php";
 
 // ===================================================================
 // Scripts PHP
@@ -25,13 +26,6 @@ require "php/controllers/post-ctrl.php";
 // ===================================================================
 $userID = $_GET["id"];
 
-if(!isset( $userID ) || empty( $userID )) {
-   // header("Location: index.php");
-   http_response_code(404);
-   echo "<h1> Utilisateur inexistant </h1>";
-   exit;
-}
-
 // Get user
 $user = getUser("id", $userID, PDO::PARAM_INT);
 
@@ -45,8 +39,6 @@ $posts = getAllPosts();
 // ===================================================================
 // HTML Templates
 // ===================================================================
-@require_once "php/templates/_header.php";
-@require_once "php/templates/_loadingSpinner.php";
 @require_once "php/templates/_navbar.php";
 @require_once "php/templates/_newsFeed.php";
 @require_once "php/templates/_footer.php";

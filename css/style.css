@@ -197,8 +197,36 @@ input {
 /* ============================================ */
 /* --- Error Code ---  */
 /* ============================================ */
-/* .error-code {
+.server-alert {
+   z-index: 2000;
    position: fixed;
-   top: 50%;
+   top: 100px;
    left: 50%;
-} */
+   height: 90px;
+   width: 35%;
+
+   font-size: 150%;
+   font-weight: 600;
+
+   border-radius: 15px;
+   transform: translateX(-250%);
+   border: double red 3px;
+   background: pink;
+
+   animation: slide 2.5s ease-in-out;
+}
+
+@keyframes slide {
+   0% {transform: translateX(-250%)}
+   20% {transform: translateX(-35%)}
+   30% {transform: translateX(-60%)}
+   38% {transform: translateX(-48%)}
+
+   40% {transform: translateX(-50%)}
+   60% {transform: translateX(-50%)}
+
+   62% {transform: translateX(-48%)}
+   70% {transform: translateX(-60%)}
+   80% {transform: translateX(-35%)}
+   100% {transform: translateX(-250%)}
+}
