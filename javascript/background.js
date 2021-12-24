@@ -8,14 +8,16 @@ const getUrlParams = (param) => {
    return params.get(param);
 }
 
-const enableSpinner = () => {
-   const spinner = document.querySelector(".backload");
-   // spinner.classList.remove("hide");
-   spinner.style = "display: flex !important";
-}
 
 const disableSpinner = () => {
    const spinner = document.querySelector(".backload");
-   // spinner.classList.add("hide");
-   spinner.style = "display: none !important";
+   spinner.classList.add("hide");
+}
+
+
+const disableServerAlert = () => {
+   const delay = 3000; // <== miliseconds
+   
+   const serverAlert = document.querySelector(".server-alert");
+   setTimeout(() => serverAlert.classList.add("hide"), delay);
 }

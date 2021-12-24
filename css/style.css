@@ -79,6 +79,12 @@ button {
    src: url("../fonts/Raleway-Medium.ttf");
 }
 
+/* Raleway Bold */
+@font-face {
+   font-family: "Raleway-Bold";
+   src: url("../fonts/Raleway-Bold.ttf");
+}
+
 /* Roboto Medium */
 @font-face {
    font-family: "Roboto-Medium";
@@ -205,7 +211,7 @@ input {
    height: 90px;
    width: 35%;
 
-   font-size: 150%;
+   font-size: 160%;
    font-weight: 600;
 
    border-radius: 15px;
@@ -213,20 +219,22 @@ input {
    border: double red 3px;
    background: pink;
 
+   font-family: "Raleway-Medium";
+   word-spacing: 200%;
    animation: slide 2.5s ease-in-out;
 }
 
 @keyframes slide {
    0% {transform: translateX(-250%)}
-   20% {transform: translateX(-35%)}
-   30% {transform: translateX(-60%)}
-   38% {transform: translateX(-48%)}
+   18% {transform: translateX(-35%)}
+   27% {transform: translateX(-60%)}
+   36% {transform: translateX(-47%)}
 
-   40% {transform: translateX(-50%)}
-   60% {transform: translateX(-50%)}
+   38% {transform: translateX(-50%)}
+   62% {transform: translateX(-50%)}
 
-   62% {transform: translateX(-48%)}
-   70% {transform: translateX(-60%)}
-   80% {transform: translateX(-35%)}
+   64% {transform: translateX(-47%)}
+   73% {transform: translateX(-60%)}
+   82% {transform: translateX(-35%)}
    100% {transform: translateX(-250%)}
 }
