@@ -19,6 +19,20 @@ const swapLogPages = () => {
    });
 }
 
+const submitLogForms = () => {
+   const loginBtn = document.querySelector(".login-btn");
+   const signinBtn = document.querySelector(".signin-btn");
+   
+   loginBtn.addEventListener("click", (event) => {
+      event.preventDefault;
+   });
+   
+   signinBtn.addEventListener("click", (event) => {
+      event.preventDefault;
+   });
+}
+
 window.addEventListener("load", () => {
    swapLogPages();
+   // submitLogForms();
 });

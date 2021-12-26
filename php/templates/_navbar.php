@@ -4,7 +4,7 @@
    <section class="flexCenter nav-left">
       <div class="flexCenter user-caption">
          <h2>Bonjour <?= strip_tags( $user["userName"] )?></h2>
-         <h2><?= strip_tags( $user["email"] )?></h2>
+         <h2><?= "user-email@gmail.com" ?></h2>
       </div>
 
       <figure class="flexCenter user-picture">

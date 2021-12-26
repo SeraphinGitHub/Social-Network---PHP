@@ -220,7 +220,6 @@ input {
    background: pink;
 
    font-family: "Raleway-Medium";
-   word-spacing: 200%;
    animation: slide 2.5s ease-in-out;
 }
 
