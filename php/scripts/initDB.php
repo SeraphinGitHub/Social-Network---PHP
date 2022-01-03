@@ -1,62 +1,87 @@
 <?php
 
 // ===================================================================
-// Init DataBase
+// Init Admin User
 // ===================================================================
-function initDataBase($DB) {
+function initAdminUser() {
+   require "env.php";
+   require "php/scripts/connect.php";
    
-   initUsers($DB);
-   initCustoms($DB);
-   initPosts($DB);
-   initComments($DB);
+   $adminEmailHash = password_hash( $ADMIN["email"], PASSWORD_ARGON2ID );
+   $adminPswHash = password_hash( $ADMIN["password"], PASSWORD_ARGON2ID );
+
+   $sql = "INSERT IGNORE INTO users (
+      userName,
+      email,
+      password,
+      isAdmin,
+      createdAt,
+      updatedAt)
+      
+      VALUES (
+      '$ADMIN[userName]',
+      '$adminEmailHash',
+      '$adminPswHash',
+      '$ADMIN[isAdmin]',
+      now(),
+      now()
+   )";
+
+   $db -> exec($sql);
 }
 
 
 // ===================================================================
-// Init Base Table
+// Init DB
 // ===================================================================
-function initTable_Base($DB, $TABLE_NAME, $SQL) {
+function initDB() {
    
-   $sql = "SELECT id FROM $TABLE_NAME";
-   $request = $DB -> query($sql);
-   
-   if(empty( $request )) {
-      $request = $DB -> exec($SQL);
-   }
+   // Tables
+   initUsers();
+   initCustoms();
+   initPosts();
+   initComments();
+
+   // Admin
+   initAdminUser();
 }
 
 
 // ===================================================================
 // Init Users Table
 // ===================================================================
-function initUsers($DB) {
+function initUsers() {
+   require "php/scripts/connect.php";
 
    $tableName = "users";
    
-   $sql = "CREATE TABLE $tableName (
+   $sql = "CREATE TABLE IF NOT EXISTS $tableName (
       id INT(11) AUTO_INCREMENT UNIQUE NOT NULL,
       userName VARCHAR(255) UNIQUE NOT NULL,
       email VARCHAR(255) UNIQUE NOT NULL,
       password VARCHAR(255) NOT NULL,
+      isAdmin TINYINT NOT NULL, 
       createdAt DATETIME NOT NULL,
       updatedAt DATETIME NOT NULL,
    
       PRIMARY KEY (id)
    )";
    
-   initTable_Base($DB, $tableName, $sql);
+   $db -> exec($sql);
 }
 
 
 // ===================================================================
 // Init Customs Table
 // ===================================================================
-function initCustoms($DB) {
+function initCustoms() {
+   require "php/scripts/connect.php";
+
    $tableName = "customs";
 
-   $sql = "CREATE TABLE $tableName (
+   $sql = "CREATE TABLE IF NOT EXISTS $tableName (
       id INT(11) AUTO_INCREMENT UNIQUE NOT NULL,
-      userID INT(11) NOT NULL,
+      userID INT(11) UNIQUE NOT NULL,
       navClass VARCHAR(255) NOT NULL,
       postClass VARCHAR(255) NOT NULL,
       scrollClass VARCHAR(255) NOT NULL,
@@ -64,17 +89,19 @@ function initCustoms($DB) {
       PRIMARY KEY (id)
    )";
 
-   initTable_Base($DB, $tableName, $sql);
+   $db -> exec($sql);
 }
 
 
 // ===================================================================
 // Init Posts Table
 // ===================================================================
-function initPosts($DB) {
+function initPosts() {
+   require "php/scripts/connect.php";
+
    $tableName = "posts";
 
-   $sql = "CREATE TABLE $tableName (
+   $sql = "CREATE TABLE IF NOT EXISTS $tableName (
       id INT(11) AUTO_INCREMENT UNIQUE NOT NULL,
       userID INT(11) NOT NULL,
       title VARCHAR(255) NOT NULL,
@@ -86,17 +113,19 @@ function initPosts($DB) {
       PRIMARY KEY (id)
    )";
 
-   initTable_Base($DB, $tableName, $sql);
+   $db -> exec($sql);
 }
 
 
 // ===================================================================
 // Init Comments Table
 // ===================================================================
-function initComments($DB) {
+function initComments() {
+   require "php/scripts/connect.php";
+
    $tableName = "comments";
 
-   $sql = "CREATE TABLE $tableName (
+   $sql = "CREATE TABLE IF NOT EXISTS $tableName (
       id INT(11) AUTO_INCREMENT UNIQUE NOT NULL,
       userID INT(11) NOT NULL,
       postID INT(11) NOT NULL,
@@ -107,5 +136,5 @@ function initComments($DB) {
       PRIMARY KEY (id)
    )";
 
-   initTable_Base($DB, $tableName, $sql);
+   $db -> exec($sql);
 }

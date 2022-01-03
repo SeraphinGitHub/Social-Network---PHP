@@ -21,3 +21,9 @@ const disableServerAlert = () => {
    const serverAlert = document.querySelector(".server-alert");
    setTimeout(() => serverAlert.classList.add("hide"), delay);
 }
+
+
+window.addEventListener("load", () => {
+   disableSpinner();
+   disableServerAlert();
+})

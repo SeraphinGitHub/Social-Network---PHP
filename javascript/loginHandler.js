@@ -20,19 +20,23 @@ const swapLogPages = () => {
 }
 
 const submitLogForms = () => {
+   
    const loginBtn = document.querySelector(".login-btn");
    const signinBtn = document.querySelector(".signin-btn");
+   const loadingSpinner = document.querySelector(".backload");
    
    loginBtn.addEventListener("click", (event) => {
-      event.preventDefault;
+      // event.preventDefault();
+      loadingSpinner.classList.remove("hide");
    });
    
    signinBtn.addEventListener("click", (event) => {
-      event.preventDefault;
+      // event.preventDefault();
+      loadingSpinner.classList.remove("hide");
    });
 }
 
 window.addEventListener("load", () => {
    swapLogPages();
-   // submitLogForms();
+   submitLogForms();
 });

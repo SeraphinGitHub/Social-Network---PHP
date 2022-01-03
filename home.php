@@ -15,7 +15,6 @@ $script = '
 // ===================================================================
 // Scripts PHP
 // ===================================================================
-require "php/scripts/connect.php";
 require "php/controllers/user-ctrl.php";
 require "php/controllers/custom-ctrl.php";
 require "php/controllers/post-ctrl.php";

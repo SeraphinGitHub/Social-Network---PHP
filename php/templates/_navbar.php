@@ -1,6 +1,8 @@
 
+<!-- =============== NavBar =============== -->
 <nav class="flexCenter nav-bar <?= strip_tags( $custom["navClass"] )?>">
 
+   <!-- Nav Left -->
    <section class="flexCenter nav-left">
       <div class="flexCenter user-caption">
          <h2>Bonjour <?= strip_tags( $user["userName"] )?></h2>
@@ -12,10 +14,12 @@
       </figure>
    </section>
 
+   <!-- Nav Center -->
    <section class="flexCenter nav-center">
       <input type="text" placeholder="Rechercher un utilisateur">
    </section>
 
+   <!-- Nav Right -->
    <section class="flexCenter nav-right">
       <button class="btn settings-btn user-settings-btn">Paramètres utilisateur</button>
       <button class="btn settings-btn custom-color-btn">Personaliser</button>

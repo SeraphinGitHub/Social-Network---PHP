@@ -1,4 +1,6 @@
 
+<?php require "php/scripts/browserAlert.php" ?>
+
 <!DOCTYPE html>
 <html lang="fr">
    
@@ -19,3 +21,5 @@
 </head>
 
 <body class="flexCenter">
+
+<?php require "php/templates/_loadingSpinner.php" ?>

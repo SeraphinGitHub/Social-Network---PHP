@@ -1,7 +1,10 @@
 
+<!-- =============== News =============== -->
 <ul class="flexCenter news-feed <?= $custom["scrollClass"] ?>">
    
-   <?php      
+   <?php
+      require "php/scripts/connect.php";
+      
       foreach($posts as $post):
 
       $sql = "SELECT `userName` FROM users WHERE `id` = $post[userID]";
