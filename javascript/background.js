@@ -17,9 +17,11 @@ const disableSpinner = () => {
 
 const disableServerAlert = () => {
    const delay = 3000; // <== miliseconds
-   
    const serverAlert = document.querySelector(".server-alert");
-   setTimeout(() => serverAlert.classList.add("hide"), delay);
+   
+   if(serverAlert) {
+      setTimeout(() => serverAlert.classList.add("hide"), delay);
+   }
 }
 
 

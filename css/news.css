@@ -1,6 +1,6 @@
 
 /* --- <ul> --- */
-.news-feed {
+.news {
    position: fixed;
    overflow-y: scroll;
    align-content: flex-start;

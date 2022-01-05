@@ -1,70 +1,76 @@
 <?php
 
-// ===================================================================
-// Get custom
-// ===================================================================
-function getCustom($USER_ID) {
-   require "php/scripts/connect.php";
-
-   $sql = "SELECT * FROM customs WHERE `userID` = :userID";
-   $request = $db -> prepare($sql);
-   $request -> bindValue(":userID", $USER_ID, PDO::PARAM_INT);
-   $request -> execute();
-   $custom = $request -> fetch();
-   return $custom;
-}
+require_once "php/browser & DB/connect.php";
 
 
-// ===================================================================
-// Default Custom
-// ===================================================================
-function defaultCustom($USER_ID) {
-   require "php/scripts/connect.php";
+class Custom extends Connect {
+
+   public $defaultColor;
    
-   if(empty( getCustom($USER_ID) )) {
-      $color = 'light-blue';
-      
-      // Set default custom
-      $sql = "INSERT INTO customs (
-         userID,
-         navClass,
-         postClass,
-         scrollClass)
-         
-         VALUES (
-         '$USER_ID',
-         'nav-$color',
-         'post-$color',
-         'scroll-$color'
-      )";
-      
-      $db -> exec($sql);
+   function __construct() {
+      $this -> defaultColor = 'light-blue';
    }
-   return getCustom($USER_ID);
-}
 
 
-// ===================================================================
-// Save Custom
-// ===================================================================
-function saveCustom($REQ_ARRAY) {
-   require "php/scripts/connect.php";
-
-   $customClassArray = $REQ_ARRAY[0];
-   $paramID = $REQ_ARRAY[1]["id"];
+   function getCustom($USER_ID) {
    
-   foreach($customClassArray as $customClass) {
-      if($customClass) {
+      $sql = "SELECT * FROM customs WHERE `userID` = :userID";
+      $request = Connect::dbConn() -> prepare($sql);
+      $request -> bindValue(":userID", $USER_ID, PDO::PARAM_INT);
+      $request -> execute();
+      $custom = $request -> fetch();
+      return $custom;
+   }
+   
+
+   function defaultCustom($USER_ID) {
+      $color = $this -> defaultColor;
+
+      if(empty( $this -> getCustom($USER_ID) )) {
          
-         $column = array_search($customClass, $customClassArray);
+         // Set default custom
+         $sql = "INSERT INTO customs (
+            userID,
+            navClass,
+            postClass,
+            scrollClass)
+            
+            VALUES (
+            '$USER_ID',
+            'nav-$color',
+            'post-$color',
+            'scroll-$color'
+         )";
          
-         try {
-            $sql = "UPDATE customs SET $column = '$customClass' WHERE userID = $paramID";
-            $db -> exec($sql);
-         }
-         catch(PDOException $except) {
-            die($except -> getMessage());
+         Connect::dbConn() -> exec($sql);
+      }
+
+      return $this -> getCustom($USER_ID);
+   }
+   
+
+   function saveCustom($REQ_ARRAY) {
+
+      $customClassArray = $REQ_ARRAY[0];
+      $paramID = $REQ_ARRAY[1]["id"];
+      
+      foreach($customClassArray as $customClass) {
+         
+         if($customClass) {
+            $column = array_search($customClass, $customClassArray);
+            
+            try {
+               $sql = "UPDATE customs SET $column = '$customClass' WHERE userID = $paramID";
+               Connect::dbConn() -> exec($sql);
+            }
+
+            catch(PDOException $except) {
+               die($except -> getMessage());
+            }
          }
       }
    }
 }
+
+
+$customClass = new Custom();

@@ -4,7 +4,7 @@ $title = "Home";
 
 $link = '
    <link rel="stylesheet" type="text/css" href="css/navbar.css">
-   <link rel="stylesheet" type="text/css" href="css/newsFeed.css">
+   <link rel="stylesheet" type="text/css" href="css/news.css">
 ';
 $script = '
    <script src="javascript/customHandler.js" async></script>
@@ -13,8 +13,9 @@ $script = '
 @require_once "php/templates/_header.php";
 
 // ===================================================================
-// Scripts PHP
+// Imported Scripts
 // ===================================================================
+require_once "php/browser & DB/connect.php";
 require "php/controllers/user-ctrl.php";
 require "php/controllers/custom-ctrl.php";
 require "php/controllers/post-ctrl.php";
@@ -26,18 +27,18 @@ require "php/controllers/post-ctrl.php";
 $userID = $_GET["id"];
 
 // Get user
-$user = getUser("id", $userID, PDO::PARAM_INT);
+$user = $userClass -> getUser("id", $userID, PDO::PARAM_INT);
 
 // Get custom
-$custom = defaultCustom($userID);
+$custom = $customClass -> defaultCustom($userID);
 
-// Get newsFeed
-$posts = getAllPosts();
+// Get news
+$posts = $postClass -> getAllPosts();
 
 
 // ===================================================================
 // HTML Templates
 // ===================================================================
 @require_once "php/templates/_navbar.php";
-@require_once "php/templates/_newsFeed.php";
+@require_once "php/templates/_news.php";
 @require_once "php/templates/_footer.php";

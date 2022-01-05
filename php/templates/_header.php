@@ -1,6 +1,4 @@
 
-<?php require "php/scripts/browserAlert.php" ?>
-
 <!DOCTYPE html>
 <html lang="fr">
    
@@ -22,4 +20,10 @@
 
 <body class="flexCenter">
 
-<?php require "php/templates/_loadingSpinner.php" ?>
+
+<?php
+require "php/browser & DB/browserAlert.php";
+
+$browserAlertClass -> disableActuAlert();
+
+@require_once "php/templates/_loadingSpinner.php";

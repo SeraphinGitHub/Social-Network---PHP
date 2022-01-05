@@ -1,15 +1,10 @@
 
 <!-- =============== News =============== -->
-<ul class="flexCenter news-feed <?= $custom["scrollClass"] ?>">
+<ul class="flexCenter news <?= $custom["scrollClass"] ?>">
    
    <?php
-      require "php/scripts/connect.php";
-      
       foreach($posts as $post):
-
-      $sql = "SELECT `userName` FROM users WHERE `id` = $post[userID]";
-      $request = $db -> query($sql);
-      $userName = $request -> fetch();
+         $userName = $postClass -> getPostUserName($post);
    ?>
 
    <li class="flexCenter post <?= strip_tags( $custom["postClass"] )?>" id="<?= strip_tags( $post["id"] )?>">

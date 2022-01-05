@@ -8,7 +8,7 @@ $req_Str = file_get_contents("php://input");
 $req_Array = json_decode($req_Str, true);
 
 // ===================================================================
-// Scripts PHP
+// Imported Scripts
 // ===================================================================
 require "php/controllers/custom-ctrl.php";
 
@@ -18,5 +18,5 @@ require "php/controllers/custom-ctrl.php";
 // ===================================================================
 if(isset( $req_Str ) && !empty( $req_Str )) {
 
-   saveCustom($req_Array);   
+   $customClass -> saveCustom($req_Array);   
 }

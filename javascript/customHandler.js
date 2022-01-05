@@ -7,7 +7,7 @@ let customizeArray = [];
 const htmlElements = {
    nav: document.querySelector(".nav-bar"),
    post: document.querySelectorAll(".post"),
-   scroll: document.querySelector(".news-feed"),
+   scroll: document.querySelector(".news"),
 }
 
 const colorsRange = (elem) => {

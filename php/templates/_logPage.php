@@ -10,7 +10,7 @@
          <label for="logUserName">Pseudo</label>
          
          <input
-            type="text" name="logUserName" placeholder="Entrer votre pseudo"
+            type="text" name="logUserName" id="logUserName" placeholder="Entrer votre pseudo"
             autofocus value="<?= isset($_POST["logUserName"]) ? $_POST["logUserName"] : ""; ?>"
          >
       </div>
@@ -20,7 +20,7 @@
          <label for="logEmail">Adresse E-mail</label>
          
          <input
-            type="email" name="logEmail" placeholder="Entrer votre E-mail"
+            type="email" name="logEmail" id="logEmail" placeholder="Entrer votre E-mail"
             value="<?= isset($_POST["logEmail"]) ? $_POST["logEmail"] : ""; ?>"
          >
       </div>
@@ -30,7 +30,7 @@
          <label for="logPassword">Mot de passe</label>
          
          <input
-            type="password" name="logPassword" placeholder="Entrer votre mot de passe"
+            type="password" name="logPassword" id="logPassword" placeholder="Entrer votre mot de passe"
             value="<?= isset($_POST["logPassword"]) ? $_POST["logPassword"] : ""; ?>"
          >
       </div>
@@ -52,7 +52,7 @@
          <label for="signUserName">Pseudo</label>
          
          <input
-            type="text" name="signUserName" placeholder="Entrer votre pseudo"
+            type="text" name="signUserName" id="signUserName" placeholder="Entrer votre pseudo"
             autofocus value="<?= isset($_POST["signUserName"]) ? $_POST["signUserName"] : ""; ?>"
          >
       </div>
@@ -62,7 +62,7 @@
          <label for="signEmail">Adresse E-mail</label>
          
          <input
-            type="email" name="signEmail" placeholder="Entrer votre E-mail"
+            type="email" name="signEmail" id="signEmail" placeholder="Entrer votre E-mail"
             value="<?= isset($_POST["signEmail"]) ? $_POST["signEmail"] : ""; ?>"
          >
       </div>
@@ -72,7 +72,7 @@
          <label for="signConfirmEmail">Confirmation E-mail</label>
          
          <input
-            type="email" name="signConfirmEmail" placeholder="Confirmer votre E-mail"
+            type="email" name="signConfirmEmail" id="signConfirmEmail" placeholder="Confirmer votre E-mail"
             value="<?= isset($_POST["signConfirmEmail"]) ? $_POST["signConfirmEmail"] : ""; ?>"
          >
       </div>
@@ -82,7 +82,7 @@
          <label for="signPassword">Mot de passe</label>
          
          <input
-            type="password" name="signPassword" placeholder="Entrer votre mot de passe"
+            type="password" name="signPassword" id="signPassword" placeholder="Entrer votre mot de passe"
             value="<?= isset($_POST["signPassword"]) ? $_POST["signPassword"] : ""; ?>"
          >
       </div>
@@ -92,7 +92,7 @@
          <label for="signConfirmPsw">Confirmation mot de passe</label>
          
          <input
-            type="password" name="signConfirmPsw" placeholder="Confirmer votre mot de passe"
+            type="password" name="signConfirmPsw" id="signConfirmPsw" placeholder="Confirmer votre mot de passe"
             value="<?= isset($_POST["signConfirmPsw"]) ? $_POST["signConfirmPsw"] : ""; ?>"
          >
       </div>

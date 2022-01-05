@@ -6,19 +6,18 @@ $link = '
    <link rel="stylesheet" type="text/css" href="css/logPage.css">
 ';
 $script = '
-   <script src="javascript/loginHandler.js" async></script>
+   <script src="javascript/logSystemHandler.js" async></script>
 ';
 
 @require_once "php/templates/_header.php";
 
 // ===================================================================
-// Scripts PHP
+// Imported Scripts
 // ===================================================================
-require "php/scripts/initDB.php";
-require "php/scripts/connect.php";
+require "php/browser & DB/initDB.php";
 require "php/controllers/user-ctrl.php";
 
-initDB();
+$initDBClass -> initialize();
 
 
 // ===================================================================
@@ -43,8 +42,7 @@ if(isset( $_POST["loginBtn"] )) {
    && !empty( $password ) && filter_var( $password, FILTER_VALIDATE_REGEXP, $pswRegEx )) {
       
       try {
-
-         $user = getUser("userName", $userName, PDO::PARAM_STR);
+         $user = $userClass -> getUser("userName", $userName, PDO::PARAM_STR);
 
          if(isset( $user ) && !empty( $user )) {
 
@@ -53,15 +51,16 @@ if(isset( $_POST["loginBtn"] )) {
             $passwordChecked = password_verify( $password, $user["password"] );
             
             // Error messages
-            if(!$emailChecked) serverErrorMsg("E-mail invalide !");
-            if(!$passwordChecked) serverErrorMsg("Mot de passe invalide !");
-            if(!$emailChecked && !$passwordChecked) serverErrorMsg("E-mail et Mot de passe invalides !");
+            if(!$emailChecked && $passwordChecked) $browserAlertClass -> serverErrorMsg("E-mail invalide !");
+            if($emailChecked && !$passwordChecked) $browserAlertClass -> serverErrorMsg("Mot de passe invalide !");
+            if(!$emailChecked && !$passwordChecked) $browserAlertClass -> serverErrorMsg("E-mail et Mot de passe invalides !");
 
             // if correct user informations
-            if($emailChecked && $passwordChecked) connectUser($user);
+            if($emailChecked && $passwordChecked) $userClass -> connectUser($user);
+            
          }
 
-         else serverErrorMsg("Ce pseudo n'existe pas !");
+         else $browserAlertClass -> serverErrorMsg("Pseudo incorrect !");
       }
 
       catch(PDOException $except) {
@@ -92,12 +91,12 @@ if(isset( $_POST["signinBtn"] )) {
    && $password === $confirmPsw ) {
       
       try {
-         $user = getUser("userName", $userName, PDO::PARAM_STR);
+         $user = $userClass -> getUser("userName", $userName, PDO::PARAM_STR);
 
          // if User doesn't already exists
          if(!isset( $user ) || empty( $user )) {
             
-            // Hash check
+            // Hash sensitive infos
             $emailHash = password_hash( $email, PASSWORD_ARGON2ID );
             $passwordHash = password_hash( $password, PASSWORD_ARGON2ID );
             
@@ -109,17 +108,17 @@ if(isset( $_POST["signinBtn"] )) {
             ];
 
             // Save User
-            saveUser($value);
+            $userClass -> saveUser($value);
             
             // Get user
-            $user = getUserID("userName", $userName);
+            $user = $userClass -> getUserID("userName", $userName);
    
             // Connect User
-            connectUser($user);
+            $userClass -> connectUser($user);
          }
 
          // if User already exists
-         else serverErrorMsg("Ce pseudo est déjà pris !");
+         else $browserAlertClass -> serverErrorMsg("Ce pseudo est déjà pris !");
       }
 
       catch(PDOException $except) {

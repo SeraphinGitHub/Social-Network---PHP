@@ -5,21 +5,12 @@
 /* ===================================================== */
 table {
    z-index: 1000;
-   position: fixed;
    font-size: 160%;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
 }
 
 pre {
    z-index: 1000;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-content: center;
-   text-align: center;
-   
+   width: 100%;
    padding: 10px !important;
    font-size: 150%;
    background: white;
