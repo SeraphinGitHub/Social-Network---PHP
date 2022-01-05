@@ -5,11 +5,7 @@ require_once "php/browser & DB/connect.php";
 
 class Custom extends Connect {
 
-   public $defaultColor;
-   
-   function __construct() {
-      $this -> defaultColor = 'light-blue';
-   }
+   private $defaultColor = 'light-blue';
 
 
    function getCustom($USER_ID) {
@@ -73,4 +69,4 @@ class Custom extends Connect {
 }
 
 
-$customClass = new Custom();
+$customClass = new Custom($env);

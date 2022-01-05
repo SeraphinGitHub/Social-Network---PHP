@@ -24,6 +24,6 @@
 <?php
 require "php/browser & DB/browserAlert.php";
 
-$browserAlertClass -> disableActuAlert();
+$browserAlertClass -> disableAlert();
 
 @require_once "php/templates/_loadingSpinner.php";

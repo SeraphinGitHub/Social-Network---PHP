@@ -8,6 +8,7 @@ class InitDB extends Connect {
    protected $env;
 
    public function __construct($env) {
+      
       $this -> admin_name = $env["admin_name"];
       $this -> admin_email = $env["admin_email"];
       $this -> admin_password = $env["admin_password"];

@@ -3,12 +3,7 @@
 
 class BrowserAlert {
 
-   function serverErrorMsg($MESSAGE) {
-      echo "<h1 class='flexCenter server-alert'> $MESSAGE </h1>";
-   }
-
-
-   function disableActuAlert() {
+   function disableAlert() {
 
       session_start();
 

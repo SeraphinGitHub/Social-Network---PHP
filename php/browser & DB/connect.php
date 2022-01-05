@@ -23,6 +23,7 @@ class Connect {
    protected $env;
 
    public function __construct($env) {
+
       $this -> db_name = $env["db_name"];
       $this -> db_user = $env["db_user"];
       $this -> db_password = $env["db_password"];
@@ -39,6 +40,11 @@ class Connect {
       ];
       
       try {
+         // var_dump($this -> db_name);
+         // var_dump($this -> db_user);
+         // var_dump($this -> db_host);
+         // var_dump($this -> db_password);
+         
          $db = new PDO(
             "mysql:dbname=".$this -> db_name.";host=".$this -> db_host,
             $this -> db_user,
