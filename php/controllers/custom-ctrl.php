@@ -8,21 +8,23 @@ class Custom extends Connect {
    private $defaultColor = 'light-blue';
 
 
-   function getCustom($USER_ID) {
+   function getCustom($userID) {
    
       $sql = "SELECT * FROM customs WHERE `userID` = :userID";
-      $request = Connect::dbConn() -> prepare($sql);
-      $request -> bindValue(":userID", $USER_ID, PDO::PARAM_INT);
+
+      $request = $this -> dbConn() -> prepare($sql);
+      $request -> bindValue(":userID", $userID, PDO::PARAM_INT);
       $request -> execute();
+      
       $custom = $request -> fetch();
       return $custom;
    }
    
 
-   function defaultCustom($USER_ID) {
+   function defaultCustom($userID) {
       $color = $this -> defaultColor;
 
-      if(empty( $this -> getCustom($USER_ID) )) {
+      if(empty( $this -> getCustom($userID) )) {
          
          // Set default custom
          $sql = "INSERT INTO customs (
@@ -32,32 +34,40 @@ class Custom extends Connect {
             scrollClass)
             
             VALUES (
-            '$USER_ID',
+            '$userID',
             'nav-$color',
             'post-$color',
             'scroll-$color'
          )";
          
-         Connect::dbConn() -> exec($sql);
+         $this -> dbConn() -> exec($sql);
       }
 
-      return $this -> getCustom($USER_ID);
+      return $this -> getCustom($userID);
    }
    
 
-   function saveCustom($REQ_ARRAY) {
+   function saveCustom($userClass, $reqArray) {
 
-      $customClassArray = $REQ_ARRAY[0];
-      $paramID = $REQ_ARRAY[1]["id"];
+      $user = $userClass -> verifyToken();
+      $DOM_ClassArray = $reqArray;
       
-      foreach($customClassArray as $customClass) {
+      foreach($DOM_ClassArray as $DOM_Class) {
          
-         if($customClass) {
-            $column = array_search($customClass, $customClassArray);
+         if($DOM_Class) {
+            $column = array_search($DOM_Class, $DOM_ClassArray);
             
             try {
-               $sql = "UPDATE customs SET $column = '$customClass' WHERE userID = $paramID";
-               Connect::dbConn() -> exec($sql);
+               $sql = "UPDATE customs SET $column = '$DOM_Class' WHERE userID = '$user[id]'";
+               $this -> dbConn() -> exec($sql);
+
+               // $sql = "UPDATE customs SET :column = :DOM_Class WHERE userID = :userID";
+
+               // $request = $this -> dbConn() -> prepare($sql);
+               // $request -> bindvalue(":column", $column, PDO::PARAM_STR);
+               // $request -> bindvalue(":DOM_Class", $DOM_Class, PDO::PARAM_STR);
+               // $request -> bindvalue(":userID", $user["id"], PDO::PARAM_INT);
+               // $request -> execute();
             }
 
             catch(PDOException $except) {

@@ -22,8 +22,7 @@
 
 
 <?php
-require "php/browser & DB/browserAlert.php";
-
-$browserAlertClass -> disableAlert();
+require "php/browser & DB/browserHandler.php";
+$browserHandlerClass -> disableAlert();
 
 @require_once "php/templates/_loadingSpinner.php";

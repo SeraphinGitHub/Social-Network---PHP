@@ -95,12 +95,8 @@ const saveColorChange = () => {
       postClass: customizeArray[1],
       scrollClass: customizeArray[2],
    }
-
-   const userData = {
-      id: getUrlParams("id"),
-   }
    
-   xhr.send(JSON.stringify( [customData, userData] ));
+   xhr.send(JSON.stringify( customData ));
    customizeArray = [];
 }
 

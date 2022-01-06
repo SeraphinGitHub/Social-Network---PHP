@@ -14,36 +14,22 @@ $script = '
 // ===================================================================
 // Imported Scripts
 // ===================================================================
-
-
-// *************************************************
-// require "php/browser & DB/initDB.php";
-// $connectClass -> dbConn();
-// *************************************************
-
-
 require "php/browser & DB/initDB.php";
 require "php/controllers/user-ctrl.php";
 
-$initDBClass -> initialize();
-
+// $initDBClass -> initialize();
 
 // ===================================================================
-// Login
+// Code
 // ===================================================================
-if(isset( $_POST["loginBtn"] )) {
-   
-   $userClass -> login();
+
+if(isset( $_SESSION["servMess"] )) {
+   $userClass -> serverErrorMsg( $_SESSION["servMess"] );
+   $_SESSION["servMess"] = null;
 }
 
-
-// ===================================================================
-// Sign-in
-// ===================================================================
-if(isset( $_POST["signinBtn"] )) {
-   
-   $userClass -> signin();
-}
+if(isset( $_POST["loginBtn"] )) $userClass -> loginVerifyFields();
+if(isset( $_POST["signinBtn"] )) $userClass -> signinVerifyFields();
 
 
 // ===================================================================

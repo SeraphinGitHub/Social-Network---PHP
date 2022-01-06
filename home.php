@@ -24,16 +24,18 @@ require "php/controllers/post-ctrl.php";
 // ===================================================================
 // Code
 // ===================================================================
-$userID = $_GET["id"];
 
 // Get user
-$user = $userClass -> getUser("id", $userID, PDO::PARAM_INT);
+$user = $userClass -> verifyToken();
 
-// Get custom
-$custom = $customClass -> defaultCustom($userID);
-
-// Get news
-$posts = $postClass -> getAllPosts();
+if(isset( $user ) && !empty( $user )) {
+   
+   // Get custom
+   $custom = $customClass -> defaultCustom($user["id"]);
+   
+   // Get news
+   $posts = $postClass -> getAllPosts();
+}
 
 
 // ===================================================================

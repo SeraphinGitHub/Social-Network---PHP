@@ -5,19 +5,11 @@ require_once "php/browser & DB/connect.php";
 
 class InitDB extends Connect {
 
-   protected $env;
-
-   public function __construct($env) {
-      
-      $this -> admin_name = $env["admin_name"];
-      $this -> admin_email = $env["admin_email"];
-      $this -> admin_password = $env["admin_password"];
-      $this -> admin_state = $env["admin_state"];
-   }
-
-
    function initialize() {
       
+      // $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
+
+
       // ===== Tables =====
       $this -> initUsers();
       $this -> initCustoms();
@@ -53,7 +45,7 @@ class InitDB extends Connect {
          now()
       )";
 
-      Connect::dbConn() -> exec($sql);
+      $this -> dbConn() -> exec($sql);
    }
    
 
@@ -67,13 +59,14 @@ class InitDB extends Connect {
          email VARCHAR(255) UNIQUE NOT NULL,
          password VARCHAR(255) NOT NULL,
          isAdmin TINYINT NOT NULL, 
+         token VARCHAR(255),
          createdAt DATETIME NOT NULL,
          updatedAt DATETIME NOT NULL,
       
          PRIMARY KEY (id)
       )";
       
-      Connect::dbConn() -> exec($sql);
+      $this -> dbConn() -> exec($sql);
    }
    
 
@@ -91,7 +84,7 @@ class InitDB extends Connect {
          PRIMARY KEY (id)
       )";
 
-      Connect::dbConn() -> exec($sql);
+      $this -> dbConn() -> exec($sql);
    }
    
    
@@ -111,7 +104,7 @@ class InitDB extends Connect {
          PRIMARY KEY (id)
       )";
 
-      Connect::dbConn() -> exec($sql);
+      $this -> dbConn() -> exec($sql);
    }
    
 
@@ -130,7 +123,7 @@ class InitDB extends Connect {
          PRIMARY KEY (id)
       )";
 
-      Connect::dbConn() -> exec($sql);
+      $this -> dbConn() -> exec($sql);
    }
 }
 

@@ -8,16 +8,20 @@ class Post extends Connect {
    function getAllPosts() {
       
       $sql = "SELECT * FROM posts";
-      $request = Connect::dbConn() -> query($sql);
+      $request = $this -> dbConn() -> query($sql);
       $posts = $request -> fetchAll();
       return $posts;
    }
 
 
-   function getPostUserName($POST) {
+   function getPostUserName($post) {
          
-      $sql = "SELECT `userName` FROM users WHERE `id` = $POST[userID]";
-      $request = Connect::dbConn() -> query($sql);
+      $sql = "SELECT `userName` FROM users WHERE `id` = :userID";
+      
+      $request = $this -> dbConn() -> prepare($sql);
+      $request -> bindvalue(":userID", $post["userID"], PDO::PARAM_STR);
+      $request -> execute();
+
       $userName = $request -> fetch();
       return $userName;
    }

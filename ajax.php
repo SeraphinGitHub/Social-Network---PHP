@@ -10,6 +10,7 @@ $req_Array = json_decode($req_Str, true);
 // ===================================================================
 // Imported Scripts
 // ===================================================================
+require "php/controllers/user-ctrl.php";
 require "php/controllers/custom-ctrl.php";
 
 
@@ -17,6 +18,7 @@ require "php/controllers/custom-ctrl.php";
 // Ajax Calls
 // ===================================================================
 if(isset( $req_Str ) && !empty( $req_Str )) {
-
-   $customClass -> saveCustom($req_Array);   
+   
+   session_start();
+   $customClass -> saveCustom($userClass, $req_Array);   
 }
