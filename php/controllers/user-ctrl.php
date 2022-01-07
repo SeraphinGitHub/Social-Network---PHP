@@ -98,6 +98,8 @@ class User extends Connect {
 
    function connectFromLogin($user, $inputField) {
 
+      $_SESSION["email"] = $inputField["email"];
+
       // Hash check
       $emailChecked = password_verify( $inputField["email"], $user["email"] );
       $passwordChecked = password_verify( $inputField["password"], $user["password"] );
@@ -114,6 +116,8 @@ class User extends Connect {
 
    function connectFromSignin($inputField) {
       
+      $_SESSION["email"] = $inputField["email"];
+
       // Hash sensitive infos
       $emailHash = password_hash( $inputField["email"], PASSWORD_ARGON2ID );
       $passwordHash = password_hash( $inputField["password"], PASSWORD_ARGON2ID );
@@ -192,6 +196,7 @@ class User extends Connect {
 
    function disconnectUser($message) {
 
+      session_unset();
       $_SESSION["servMess"] = $message;
       header("Location: index.php");
       exit;
@@ -218,14 +223,19 @@ class User extends Connect {
 
 
    function verifyToken() {
+      
+      if(isset( $_SESSION["token"] ) && !empty( $_SESSION["token"] )) {
+         
+         $token = $_SESSION["token"];
+         $userName = $_SESSION["userName"];
+   
+         $user = $this -> getUser("userName", $userName);
+         $isTokenValid = password_verify( $token, $user["token"] );
+         
+         if( $isTokenValid ) return $user;
+         else $this -> disconnectUser("Session expirée !");
+      }
 
-      $token = $_SESSION["token"];
-      $userName = $_SESSION["userName"];
-
-      $user = $this -> getUser("userName", $userName);
-      $tokenChecked = password_verify( $token, $user["token"] );
-
-      if( $tokenChecked ) return $user;
       else $this -> disconnectUser("Session expirée !");
    }
    

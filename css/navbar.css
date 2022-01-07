@@ -116,3 +116,27 @@
 .colors-list button:hover {
    border: solid 4px red;
 }
+
+
+/* Log Out Button */
+.logout-btn {
+   position: absolute;
+   top: 50%;
+   right: 10px;
+   height: 55px;
+   width: 55px;
+   transform: translate(0, -50%);
+   
+   text-shadow: black 2px 2px 1px;
+   color: red;
+   border: double 4px red;
+   background: linear-gradient(to bottom right, black, white, black);
+}
+
+.logout-btn i {
+   font-size: 115%;
+}
+
+.logout-btn:active {
+   color: rgb(192, 0, 0);
+}

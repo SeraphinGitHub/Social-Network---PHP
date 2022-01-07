@@ -6,7 +6,7 @@
    <section class="flexCenter nav-left">
       <div class="flexCenter user-caption">
          <h2>Bonjour <?= strip_tags( $user["userName"] )?></h2>
-         <h2><?= "user-email@gmail.com" ?></h2>
+         <h2><?= strip_tags( $_SESSION["email"] ) ?></h2>
       </div>
 
       <figure class="flexCenter user-picture">
@@ -32,5 +32,9 @@
          <button class="nav-dark-blue">Dark Blue</button>
          <button class="nav-green">Green</button>
       </div>
+
+      <button class="flexCenter btn logout-btn" type="button">
+         <i class="fas fa-power-off"></i>
+      </button>
    </section>
 </nav>

@@ -6,7 +6,11 @@ $link = '
    <link rel="stylesheet" type="text/css" href="css/logPage.css">
 ';
 $script = '
-   <script src="javascript/logSystemHandler.js" async></script>
+   <script src="javascript/loginHandler.js" async></script>
+
+   <!-- Dev Mode -->
+   <script src="DEBUG_easyLogin.js" async></script>
+   <!-- Dev Mode -->
 ';
 
 @require_once "php/templates/_header.php";

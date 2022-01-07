@@ -7,7 +7,7 @@ $link = '
    <link rel="stylesheet" type="text/css" href="css/news.css">
 ';
 $script = '
-   <script src="javascript/customHandler.js" async></script>
+   <script src="javascript/navBarHandler.js" async></script>
 ';
 
 @require_once "php/templates/_header.php";

@@ -149,8 +149,8 @@ p {
 }
 
 .btn:active {
-   border-top: solid grey 5px;
-   border-left: solid grey 5px;
+   border-top: solid rgb(180, 180, 180) 6px;
+   border-left: solid rgb(180, 180, 180) 6px;
    transition-duration: 0s;
 }
 

@@ -1,6 +1,18 @@
 
 "use strict"
 
+const ajaxRequest = (objData) => {
+
+   let xhr = new XMLHttpRequest();
+   xhr.open("POST", "ajax.php", true);
+   xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");   
+   xhr.send(JSON.stringify( objData ));
+}
+
+
+// ===================================================================
+// Custom Colors
+// ===================================================================
 let customizeArray = [];
 
 // If add new "querySelectorAll" ==> modify: addNewColor() & removeOldColor()
@@ -57,7 +69,15 @@ const customColorMenu = () => {
             });
          });
 
-         saveColorChange();
+         const customData = {
+            navClass: customizeArray[0],
+            postClass: customizeArray[1],
+            scrollClass: customizeArray[2],
+         }
+
+         ajaxRequest(customData);
+         customizeArray = [];
+         
          colorsList.classList.remove("show");
          showColorsMenu = false;
       });
@@ -84,22 +104,18 @@ const removeOldColor = (elemName, elemClass, colorClass) => {
    else elemClass.classList.remove(colorClass);
 }
 
-const saveColorChange = () => {
 
-   let xhr = new XMLHttpRequest();
-   xhr.open("POST", "ajax.php", true);
-   xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+// ===================================================================
+// Logout Button
+// ===================================================================
+const logout = () => {
+   const logoutBtn = document.querySelector(".logout-btn");
 
-   const customData = {
-      navClass: customizeArray[0],
-      postClass: customizeArray[1],
-      scrollClass: customizeArray[2],
-   }
-   
-   xhr.send(JSON.stringify( customData ));
-   customizeArray = [];
+   logoutBtn.addEventListener("click", () => ajaxRequest({ logout: "" }));
 }
+
 
 window.addEventListener("load", () => {
    customColorMenu();
+   logout();
 });

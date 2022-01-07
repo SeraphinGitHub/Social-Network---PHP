@@ -8,7 +8,8 @@ class InitDB extends Connect {
    function initialize() {
       
       // $sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
-
+      // $request = $this -> dbConn() -> exec($sql);
+      // var_dump( $request );
 
       // ===== Tables =====
       $this -> initUsers();

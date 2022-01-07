@@ -48,7 +48,7 @@ class Custom extends Connect {
    
 
    function saveCustom($userClass, $reqArray) {
-
+      
       $user = $userClass -> verifyToken();
       $DOM_ClassArray = $reqArray;
       

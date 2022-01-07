@@ -32,6 +32,7 @@ const formSubmition = () => {
    const logUserName = document.getElementById("logUserName");
    const logEmail = document.getElementById("logEmail");
    const logPassword = document.getElementById("logPassword");
+   
 
    // Sign inputFields
    const signUserName = document.getElementById("signUserName");

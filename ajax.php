@@ -20,5 +20,7 @@ require "php/controllers/custom-ctrl.php";
 if(isset( $req_Str ) && !empty( $req_Str )) {
    
    session_start();
-   $customClass -> saveCustom($userClass, $req_Array);   
+
+   if(strpos( $req_Str, "navClass" ) !== false) $customClass -> saveCustom($userClass, $req_Array);
+   if(strpos( $req_Str, "logout" ) !== false) $userClass -> disconnectUser("Vous êtes déconnecté !");
 }
