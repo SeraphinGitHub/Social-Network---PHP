@@ -1,5 +1,5 @@
 
-<!-- =============== NavBar =============== -->
+<!-- ========== NavBar ========== -->
 <nav class="flexCenter nav-bar <?= strip_tags( $custom["navClass"] )?>">
 
    <!-- Nav Left -->
@@ -33,8 +33,10 @@
          <button class="nav-green">Green</button>
       </div>
 
-      <button class="flexCenter btn logout-btn" type="button">
-         <i class="fas fa-power-off"></i>
-      </button>
+      <form class="flexCenter" method="POST">
+         <button class="flexCenter btn logout-btn" type="submit" name="logout">
+            <i class="fas fa-power-off"></i>
+         </button>
+      </form>
    </section>
 </nav>

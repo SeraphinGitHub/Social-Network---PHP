@@ -1,4 +1,13 @@
 
+.nav-bar,
+.news,
+.post,
+.publish {
+
+   transition-duration: 0.7s;
+}
+
+
 /* =================================================== */
 /* --- Nav Colors Class --- */
 /* =================================================== */
@@ -79,4 +88,32 @@
 
 .scroll-green {
    scrollbar-color: lime transparent;
+}
+
+
+/* =================================================== */
+/* --- Publish Colors Class --- */
+/* =================================================== */
+.publish-orange {
+   background: linear-gradient(to right, rgb(255, 94, 0), rgb(255, 217, 0), white);
+}
+
+.publish-red {
+   background: linear-gradient(to right, red, pink, white);
+}
+
+.publish-violet {
+   background: linear-gradient(to right, rgb(185, 23, 255), pink, white);
+}
+
+.publish-light-blue {
+   background: linear-gradient(to right, darkturquoise, white);
+}
+
+.publish-dark-blue {
+   background: linear-gradient(to right, rgb(30, 30, 30), dodgerblue, darkturquoise, white);
+}
+
+.publish-green {
+   background: linear-gradient(to right, green, lime, white);
 }

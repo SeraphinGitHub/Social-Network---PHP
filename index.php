@@ -6,7 +6,7 @@ $link = '
    <link rel="stylesheet" type="text/css" href="css/logPage.css">
 ';
 $script = '
-   <script src="javascript/loginHandler.js" async></script>
+   <script src="javascript/indexHandler.js" async></script>
 
    <!-- Dev Mode -->
    <script src="DEBUG_easyLogin.js" async></script>
@@ -26,7 +26,6 @@ require "php/controllers/user-ctrl.php";
 // ===================================================================
 // Code
 // ===================================================================
-
 if(isset( $_SESSION["servMess"] )) {
    $userClass -> serverErrorMsg( $_SESSION["servMess"] );
    $_SESSION["servMess"] = null;

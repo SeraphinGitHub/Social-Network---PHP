@@ -31,13 +31,15 @@ class Custom extends Connect {
             userID,
             navClass,
             postClass,
-            scrollClass)
+            scrollClass,
+            publishClass)
             
             VALUES (
             '$userID',
             'nav-$color',
             'post-$color',
             'scroll-$color'
+            'publish-$color'
          )";
          
          $this -> dbConn() -> exec($sql);
@@ -47,34 +49,44 @@ class Custom extends Connect {
    }
    
 
-   function saveCustom($userClass, $reqArray) {
+   function saveCustom($userClass, $responseArray) {
       
       $user = $userClass -> verifyToken();
-      $DOM_ClassArray = $reqArray;
       
-      foreach($DOM_ClassArray as $DOM_Class) {
+      $navClass = $responseArray["navClass"];
+      $postClass = $responseArray["postClass"];
+      $scrollClass = $responseArray["scrollClass"];
+      $publishClass = $responseArray["publishClass"];
+      
+      if(isset( $navClass ) && !empty( $navClass )
+      && isset( $postClass ) && !empty( $postClass )
+      && isset( $scrollClass ) && !empty( $scrollClass )
+      && isset( $publishClass ) && !empty( $publishClass )) {
          
-         if($DOM_Class) {
-            $column = array_search($DOM_Class, $DOM_ClassArray);
+         try {
+            $sql = "UPDATE customs SET
+               navClass = :navClass,
+               postClass = :postClass,
+               scrollClass = :scrollClass,
+               publishClass = :publishClass
+               WHERE userID = :userID
+            ";
             
-            try {
-               $sql = "UPDATE customs SET $column = '$DOM_Class' WHERE userID = '$user[id]'";
-               $this -> dbConn() -> exec($sql);
+            $request = $this -> dbConn() -> prepare($sql);
 
-               // $sql = "UPDATE customs SET :column = :DOM_Class WHERE userID = :userID";
+            $request -> bindvalue(":userID", $user["id"], PDO::PARAM_INT);
+            $request -> bindvalue(":navClass", $navClass, PDO::PARAM_STR);
+            $request -> bindvalue(":postClass", $postClass, PDO::PARAM_STR);
+            $request -> bindvalue(":scrollClass", $scrollClass, PDO::PARAM_STR);
+            $request -> bindvalue(":publishClass", $publishClass, PDO::PARAM_STR);
 
-               // $request = $this -> dbConn() -> prepare($sql);
-               // $request -> bindvalue(":column", $column, PDO::PARAM_STR);
-               // $request -> bindvalue(":DOM_Class", $DOM_Class, PDO::PARAM_STR);
-               // $request -> bindvalue(":userID", $user["id"], PDO::PARAM_INT);
-               // $request -> execute();
-            }
-
-            catch(PDOException $except) {
-               die($except -> getMessage());
-            }
+            $request -> execute();
          }
-      }
+
+         catch(PDOException $except) {
+            die($except -> getMessage());
+         }
+      }         
    }
 }
 

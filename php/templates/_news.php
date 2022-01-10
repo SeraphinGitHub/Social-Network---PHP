@@ -1,6 +1,6 @@
 
-<!-- =============== News =============== -->
-<ul class="flexCenter news <?= $custom["scrollClass"] ?>">
+<!-- ========== News ========== -->
+<ul class="flexCenter news news-height <?= strip_tags( $custom["scrollClass"]) ?>">
    
    <?php
       foreach($posts as $post):

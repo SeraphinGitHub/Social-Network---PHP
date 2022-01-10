@@ -5,10 +5,6 @@ require_once "php/browser & DB/connect.php";
 
 class User extends Connect {
 
-   private $textRegEx = array("options" => array("regexp" => "/[A-Za-zÜ-ü_-]/"));
-   private $pswRegEx = array("options" => array("regexp" => "/[A-Za-zÜ-ü0-9!@#$%^&*].{9,}/"));
-
-
    function loginVerifyFields() {
       
       $userName = $_POST["logUserName"];
@@ -27,7 +23,7 @@ class User extends Connect {
 
       // Login Verify
       if(isset( $userName, $email, $password )
-      && !empty( $userName ) && filter_var( $userName, FILTER_VALIDATE_REGEXP, $this -> textRegEx )
+      && !empty( $userName ) && filter_var( $userName, FILTER_VALIDATE_REGEXP, $this -> userNameRegEx )
       && !empty( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL )
       && !empty( $password ) && filter_var( $password, FILTER_VALIDATE_REGEXP, $this -> pswRegEx )) {
          
@@ -58,7 +54,7 @@ class User extends Connect {
 
       // Sigin Verify
       if(isset( $userName, $email, $confirmEmail, $password, $confirmPsw )
-      && !empty( $userName ) && filter_var( $userName, FILTER_VALIDATE_REGEXP, $this -> textRegEx )
+      && !empty( $userName ) && filter_var( $userName, FILTER_VALIDATE_REGEXP, $this -> userNameRegEx )
       && !empty( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL )
       && !empty( $confirmEmail ) && filter_var( $confirmEmail, FILTER_VALIDATE_EMAIL )
       && !empty( $password ) && filter_var( $password, FILTER_VALIDATE_REGEXP, $this -> pswRegEx )
@@ -198,6 +194,7 @@ class User extends Connect {
 
       session_unset();
       $_SESSION["servMess"] = $message;
+      // echo "<script type='text/javascript'> window.location.href = 'index.php'; </script>";
       header("Location: index.php");
       exit;
    }

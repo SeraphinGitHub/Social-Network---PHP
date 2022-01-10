@@ -30,6 +30,10 @@ class Connect {
    protected $admin_password;
    protected $admin_state;
 
+   protected $userNameRegEx = array("options" => array("regexp" => "/[A-Za-zÜ-ü0-9_-]/"));
+   protected $textRegEx = array("options" => array("regexp" => "/[A-Za-zÜ-ü0-9!@#$%^&*_-]/"));
+   protected $pswRegEx = array("options" => array("regexp" => "/[A-Za-zÜ-ü0-9!@#$%^&*].{9,}/"));
+
    public function __construct($env) {
 
       $this -> db_name = $env["db_name"];

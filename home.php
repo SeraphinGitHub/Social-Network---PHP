@@ -5,9 +5,10 @@ $title = "Home";
 $link = '
    <link rel="stylesheet" type="text/css" href="css/navbar.css">
    <link rel="stylesheet" type="text/css" href="css/news.css">
+   <link rel="stylesheet" type="text/css" href="css/publish.css">
 ';
 $script = '
-   <script src="javascript/navBarHandler.js" async></script>
+   <script src="javascript/homeHandler.js" async></script>
 ';
 
 @require_once "php/templates/_header.php";
@@ -37,10 +38,13 @@ if(isset( $user ) && !empty( $user )) {
    $posts = $postClass -> getAllPosts();
 }
 
+if(isset( $_POST["logout"] )) $userClass -> disconnectUser("Vous êtes déconnecté !");
+
 
 // ===================================================================
 // HTML Templates
 // ===================================================================
 @require_once "php/templates/_navbar.php";
+@require_once "php/templates/_publish.php";
 @require_once "php/templates/_news.php";
 @require_once "php/templates/_footer.php";

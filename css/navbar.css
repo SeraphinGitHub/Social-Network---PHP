@@ -1,12 +1,10 @@
 
 .nav-bar {
-   position: fixed;
    justify-content: space-around !important;
 
-   top: 15px;
-   left: center;
    height: 100px;
    width: 97%;
+   margin-top: 10px;
 
    border-radius: 20px;
    border: double 4px black;
@@ -89,6 +87,7 @@
 }
 
 .colors-list {
+   z-index: 1000;
    visibility: hidden;
    position: absolute;
    top: 110px;

@@ -41,17 +41,6 @@ const formSubmition = () => {
    const signPassword = document.getElementById("signPassword");
    const signConfirmPsw = document.getElementById("signConfirmPsw");
 
-
-   // Have to contain: LETTER || letter || number || dot || under score || dash && @ && LETTER || letter || number && dot && LETTER || letter
-   const emailRegEx = new RegExp(/^[A-Za-z0-9._-]+[@]+[A-Za-z0-9]+[.]+[A-Za-z]+$/);
-
-   // Have to contain: LETTER || letter || accent letters || spaces || dash
-   const normalTextRegEx = new RegExp(/^[A-Za-zÜ-ü\s-']+$/);
-
-   // Have to contain: LETTER || letter || number || accent letters || number && minimum 10 characters 
-   const passwordRegEx = new RegExp(/^[A-Za-zÜ-ü0-9!@#$%^&*].{9,}$/);
-
-
    // let loginFormData = new FormData(loginForm);
    // let signinFormData = new FormData(signinForm);
 
@@ -74,30 +63,6 @@ const formSubmition = () => {
       loadingSpinner.classList.remove("hide");
    });
 }
-
-// const formValidation = (formData) => {
-
-//    // if Empty Field
-//    if(logFormInput.value === "") alertMessage(emptyFieldAlert);
-
-//    // if player name is less than 4 characters
-//    else if(logFormInput.value.length < 4) alertMessage(minCharsAlert);
-
-//    // if player name is more than 10 characters
-//    else if(logFormInput.value.length > 10) alertMessage(maxCharsAlert);
-
-//    // if include white space
-//    else if(includeSpaceRegEx.test(logFormInput.value)) alertMessage(whiteSpaceAlert);
-
-//    // if include any special characters or number
-//    else if(!playerNameRegEx.test(logFormInput.value)) alertMessage(invalidAlert);
-
-//    // if everything's fine ==> Connect Player
-//    else if(!isSocket) {
-
-      
-//    }
-// }
 
 
 const alertMessage = (messageClass) => {

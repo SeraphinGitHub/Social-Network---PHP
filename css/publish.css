@@ -1,0 +1,65 @@
+
+.publish-height {
+   height: 200px !important;
+}
+
+
+.publish {
+   justify-content: space-between;
+   position: relative;
+   
+   margin-top: 10px;
+   height: 0px;
+   width: 51%;
+   
+   padding: 20px;
+   padding-right: 0;
+   border-radius: 20px;
+}
+
+.show-publish-btn {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   height: 30px;
+   border-radius: 34px;
+   transform: translate(-50%, -50%);
+}
+
+.publish-field-container {
+   align-content: flex-start;
+   height: 100%;
+   width: 70%;
+}
+
+/* Input */
+.publish-field-container input {
+   margin-bottom: 15px;
+}
+
+/* TextArea */
+.publish-field-container textarea {
+   overflow-y: scroll;
+   height: 135px;
+   width: 100%;
+   padding-top: 15px;
+   scrollbar-width: thin;
+}
+
+
+/* Add Img / Publish Buttons */
+.btn-container {
+   align-content: space-between;
+   height: 100%;
+   width: 30%;
+}
+
+.hide-publish-btn {
+   height: 40px;
+   width: 50%;
+}
+
+.add-image-btn,
+.publish-btn {
+   height: 60px;
+}

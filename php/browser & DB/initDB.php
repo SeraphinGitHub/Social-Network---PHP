@@ -81,6 +81,7 @@ class InitDB extends Connect {
          navClass VARCHAR(255) NOT NULL,
          postClass VARCHAR(255) NOT NULL,
          scrollClass VARCHAR(255) NOT NULL,
+         publishClass VARCHAR(255) NOT NULL,
          
          PRIMARY KEY (id)
       )";
