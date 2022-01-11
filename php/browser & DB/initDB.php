@@ -61,6 +61,7 @@ class InitDB extends Connect {
          password VARCHAR(255) NOT NULL,
          isAdmin TINYINT NOT NULL, 
          token VARCHAR(255),
+         imageURL VARCHAR(255) NOT NULL,
          createdAt DATETIME NOT NULL,
          updatedAt DATETIME NOT NULL,
       

@@ -10,7 +10,7 @@
       </div>
 
       <figure class="flexCenter user-picture">
-         <img src="public/Default.jpg" alt="photo de profil">
+         <img src="<?= strip_tags( $user["imageURL"] ) ?>">
       </figure>
    </section>
 

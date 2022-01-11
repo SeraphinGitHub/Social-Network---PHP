@@ -128,19 +128,6 @@ class User extends Connect {
       $this -> saveUser($userArray);
       $this -> connectUser($inputField["userName"]);
    }
-
-
-   function getUserID($where, $value) {
-   
-      $sql = "SELECT id FROM users WHERE `$where` = :b_value";
-
-      $request = $this -> dbConn() -> prepare($sql);
-      $request -> bindValue(":b_value", $value, PDO::PARAM_STR);
-      $request -> execute();
-      
-      $user = $request -> fetch();
-      return $user;
-   }
    
    
    function getUser($where, $value) {
@@ -164,6 +151,7 @@ class User extends Connect {
          email,
          password,
          isAdmin,
+         imageURL,
          createdAt,
          updatedAt)
          
@@ -172,6 +160,7 @@ class User extends Connect {
          '$userArray[email]',
          '$userArray[password]',
          '$userArray[isAdmin]',
+         'public/Default.jpg',
          now(),
          now()
       )";

@@ -44,7 +44,6 @@
 /* =================================================== */
 .nav-left {
    justify-content: space-around;
-   /* background-color: yellow; */
 }
 
 .user-caption {
@@ -52,15 +51,16 @@
 }
 
 .user-picture {
-   height: 85%;
+   height: 90px;
+   width: 90px;
 }
 
 .user-picture img {
    object-fit: cover;
-   height: 100%;
+   height: 94%;
    width: 100%;
    border-radius: 50%;
-   border: double 4px black;
+   border: double 3px black;
 }
 
 
@@ -83,7 +83,6 @@
 .nav-right {
    position: relative;
    align-content: space-around;
-   /* background-color: yellowgreen; */
 }
 
 .colors-list {

@@ -38,7 +38,7 @@ class Custom extends Connect {
             '$userID',
             'nav-$color',
             'post-$color',
-            'scroll-$color'
+            'scroll-$color',
             'publish-$color'
          )";
          

@@ -12,8 +12,9 @@ pre {
    z-index: 1000;
    width: 100%;
    padding: 10px !important;
-   font-size: 150%;
+   font-size: 130%;
    background: white;
+   text-align: left !important;
 }
 /* ===================================================== */
 /* --- PHP Debug --- */

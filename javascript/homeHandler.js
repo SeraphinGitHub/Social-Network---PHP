@@ -168,21 +168,23 @@ const publishPost = () => {
    const title = document.getElementById("title");
    const content = document.getElementById("content");
 
-   let formData = new FormData(publishForm);
-   
    // Publish
    publishBtn.addEventListener("click", () => {
+      
+      let formData = new FormData(publishForm);
+      formData.forEach((key, value) => formData[value] = key );
       
       formValidation(formData, title, textRegEx);
       formValidation(formData, content, textRegEx);
       
-      formData.forEach((key, value) => formData[value] = key );
-      ajaxRequest("publish", formData);
+      if(formData.title !== ""
+      && formData.content !== "") {
 
-      title.value = "";
-      content.value = "";
+         ajaxRequest("publish", formData);
+         title.value = "";
+         content.value = "";
+      }
    });
-   
 }
 
 

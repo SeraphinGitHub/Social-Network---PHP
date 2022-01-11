@@ -10,6 +10,8 @@ class Post extends Connect {
       $sql = "SELECT * FROM posts";
       $request = $this -> dbConn() -> query($sql);
       $posts = $request -> fetchAll();
+
+      krsort($posts);
       return $posts;
    }
 
@@ -62,8 +64,6 @@ class Post extends Connect {
             $request -> bindValue(":title", $title, PDO::PARAM_STR);
             $request -> bindValue(":content", $content, PDO::PARAM_STR);
             $request -> execute();
-
-            // $this -> getAllPosts();
          }
 
          catch(PDOException $except) {

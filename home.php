@@ -36,9 +36,10 @@ if(isset( $user ) && !empty( $user )) {
    
    // Get news
    $posts = $postClass -> getAllPosts();
-}
 
-if(isset( $_POST["logout"] )) $userClass -> disconnectUser("Vous êtes déconnecté !");
+
+   if(isset( $_POST["logout"] )) $userClass -> disconnectUser("Vous êtes déconnecté !");
+}
 
 
 // ===================================================================
