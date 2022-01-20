@@ -49,9 +49,7 @@ class Custom extends Connect {
    }
    
 
-   function saveCustom($userClass, $responseArray) {
-      
-      $user = $userClass -> verifyToken();
+   function saveCustom($user, $responseArray) {
       
       $navClass = $responseArray["navClass"];
       $postClass = $responseArray["postClass"];

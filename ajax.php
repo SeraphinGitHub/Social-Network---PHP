@@ -28,6 +28,8 @@ if(isset( $user ) && !empty( $user )
    $responseArray = $reqArray[1];
 
    // if($name === "logout") $userClass -> disconnectUser("Vous êtes déconnecté !");
-   if($name === "custom") $customClass -> saveCustom($userClass, $responseArray);
-   if($name === "publish") $postClass -> publishPost($userClass, $responseArray);
+   if($name === "custom") $customClass -> saveCustom($user, $responseArray);
+   if($name === "publishPost") $postClass -> publishPost($user, $responseArray);
+   if($name === "deletePost") $postClass -> deletePost($user, $responseArray);
+   // if($name === "modifyPost") $postClass -> modifyPost($user, $responseArray);
 }

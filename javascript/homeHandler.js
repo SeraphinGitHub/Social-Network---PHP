@@ -180,7 +180,7 @@ const publishPost = () => {
       if(formData.title !== ""
       && formData.content !== "") {
 
-         ajaxRequest("publish", formData);
+         ajaxRequest("publishPost", formData);
          title.value = "";
          content.value = "";
       }
@@ -188,9 +188,49 @@ const publishPost = () => {
 }
 
 
+// ===================================================================
+// Modify Post
+// ===================================================================
+const modifyPost = (postID) => {
+   
+   console.log( "Nothing here !" );
+}
+
+
+// ===================================================================
+// Delete Post
+// ===================================================================
+const deletePost = (postID) => {
+
+   ajaxRequest("deletePost", { id: postID });
+}
+
+
+// ===================================================================
+// Several Buttons Loop
+// ===================================================================
+const severalBtnsEvent = (allBtns, callback) => {
+   
+   if(allBtns) allBtns.forEach(btn => {
+      btn.addEventListener("click", (event) => {
+      
+         const postID = event.target.parentElement.parentElement.parentElement.id;
+         callback(postID);
+      });
+   });
+}
+
+
 window.addEventListener("load", () => {
+
    customColorMenu();
    // logout();
    togglePublish();
    publishPost();
+
+   const allDeleteBtns = document.querySelectorAll(".delete-btn");
+   const allModifyBtns = document.querySelectorAll(".edit-btn");
+
+   severalBtnsEvent(allDeleteBtns, deletePost);
+   severalBtnsEvent(allModifyBtns, modifyPost);
 });

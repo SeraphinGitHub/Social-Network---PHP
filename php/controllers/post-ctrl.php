@@ -16,6 +16,18 @@ class Post extends Connect {
    }
 
 
+   function getOnePost($postID) {
+      
+      $sql = "SELECT * FROM posts WHERE `id` = :postID";
+      $request = $this -> dbConn() -> prepare($sql);
+      $request -> bindValue(":postID", $postID, PDO::PARAM_INT);
+      $request -> execute();
+
+      $post = $request -> fetch();
+      return $post;
+   }
+
+
    function getPostUserName($post) {
          
       $sql = "SELECT `userName` FROM users WHERE `id` = :userID";
@@ -29,9 +41,7 @@ class Post extends Connect {
    }
 
    
-   function publishPost($userClass, $responseArray) {
-
-      $user = $userClass -> verifyToken();
+   function publishPost($user, $responseArray) {
 
       $title = $responseArray["title"];
       $content = $responseArray["content"];
@@ -68,6 +78,73 @@ class Post extends Connect {
 
          catch(PDOException $except) {
             die($except -> getMessage());
+         }
+      }
+   }
+
+
+   function modifyPost($user, $responseArray) {
+
+      // $title = $responseArray["title"];
+      // $content = $responseArray["content"];
+
+      // if(isset( $title ) && !empty( $title )
+      // && filter_var( $title, FILTER_VALIDATE_REGEXP, $this -> textRegEx )
+      // && isset( $content ) && !empty( $content )
+      // && filter_var( $content, FILTER_VALIDATE_REGEXP, $this -> textRegEx )) {
+      
+      //    try {
+      //       $sql = "INSERT INTO posts (
+      //          userID,
+      //          title,
+      //          content,
+      //          imageURL,
+      //          createdAt,
+      //          updatedAt)
+
+      //          VALUES (
+      //          :userID,
+      //          :title,
+      //          :content,
+      //          '',
+      //          now(),
+      //          now()
+      //       )";
+            
+      //       $request = $this -> dbConn() -> prepare($sql);
+      //       $request -> bindValue(":userID", $user["id"], PDO::PARAM_INT);
+      //       $request -> bindValue(":title", $title, PDO::PARAM_STR);
+      //       $request -> bindValue(":content", $content, PDO::PARAM_STR);
+      //       $request -> execute();
+      //    }
+
+      //    catch(PDOException $except) {
+      //       die($except -> getMessage());
+      //    }
+      // }
+   }
+
+
+   function deletePost($user, $responseArray) {
+
+      $postID = $responseArray["id"];
+      
+      if(isset( $postID ) && !empty( $postID )) {
+         $post = $this -> getOnePost($postID);
+
+         if($post["userID"] === $user["id"]) {
+
+            try {
+               $sql = "DELETE FROM posts WHERE `id` = :postID";
+               
+               $request = $this -> dbConn() -> prepare($sql);
+               $request -> bindValue(":postID", $postID, PDO::PARAM_INT);
+               $request -> execute();
+            }
+   
+            catch(PDOException $except) {
+               die($except -> getMessage());
+            }
          }
       }
    }
