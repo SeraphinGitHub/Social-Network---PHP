@@ -117,12 +117,18 @@ const logout = () => {
 // ===================================================================
 // Toggle Publish
 // ===================================================================
+const togglePublishDuration = 700; // Milliseconds
+
 const togglePublish = () => {
-   
-   const animDuration = 700; // Seconds 
 
    const showPublishBtn = document.querySelector(".show-publish-btn");
    const hidePublishBtn = document.querySelector(".hide-publish-btn");
+   const publishBtn = document.querySelector(".publish-btn");
+
+   let hidePublishBtnsArray = [
+      hidePublishBtn,
+      publishBtn,
+   ];
 
    const news = document.querySelector(".news");
    const publish = document.querySelector(".publish");
@@ -141,20 +147,47 @@ const togglePublish = () => {
          textContainer.classList.remove("hide");
          btnContainer.classList.remove("hide");
 
-      }, animDuration);
+      }, togglePublishDuration);
    });
 
 
    // Hide Publish
-   hidePublishBtn.addEventListener("click", () => {
-
-      news.classList.add("news-height");
-      publish.classList.remove("publish-height");
-      textContainer.classList.add("hide");
-      btnContainer.classList.add("hide");
-
-      setTimeout(() => showPublishBtn.classList.remove("hide"), animDuration);
+   hidePublishBtnsArray.forEach((btn) => {
+      btn.addEventListener("click", () => {
+   
+         news.classList.add("news-height");
+         publish.classList.remove("publish-height");
+         textContainer.classList.add("hide");
+         btnContainer.classList.add("hide");
+   
+         setTimeout(() => showPublishBtn.classList.remove("hide"), togglePublishDuration);
+      });
    });
+}
+
+
+// ===================================================================
+// Publish Base
+// ===================================================================
+const publish_Base = (formData, title, content, state) => {
+
+   formData.forEach((key, value) => formData[value] = key );
+      
+   formValidation(formData, title, textRegEx);
+   formValidation(formData, content, textRegEx);
+   
+   if(formData.title !== ""
+   && formData.content !== "") {
+
+      ajaxRequest(state, formData);
+
+      if(state === "publishPost") {
+         title.value = "";
+         content.value = "";
+      }
+      
+      setTimeout(() => location.reload(), togglePublishDuration);
+   }
 }
 
 
@@ -172,65 +205,105 @@ const publishPost = () => {
    publishBtn.addEventListener("click", () => {
       
       let formData = new FormData(publishForm);
-      formData.forEach((key, value) => formData[value] = key );
-      
-      formValidation(formData, title, textRegEx);
-      formValidation(formData, content, textRegEx);
-      
-      if(formData.title !== ""
-      && formData.content !== "") {
-
-         ajaxRequest("publishPost", formData);
-         title.value = "";
-         content.value = "";
-      }
+      publish_Base(formData, title, content, "publishPost");
    });
+}
+
+
+// ===================================================================
+// Re Publish Post
+// ===================================================================
+const republishPost = (post) => {
+   
+   const modifTitle = post.querySelector(".post-title-input");
+   const modifContent = post.querySelector(".post-content-textarea");
+   
+   let formData = new FormData();
+   formData.set("id", post.id);
+   formData.set("title", modifTitle.value);
+   formData.set("content", modifContent.value);
+   
+   publish_Base(formData, modifTitle, modifContent, "modifyPost");
 }
 
 
 // ===================================================================
 // Modify Post
 // ===================================================================
-const modifyPost = (postID) => {
-   
-   console.log( "Nothing here !" );
+const modifyPost = (post, btn) => {
+
+   const postTitle = post.querySelector(".post-title");
+   const postContent = post.querySelector(".post-content");
+   const modifPostTitle = post.querySelector(".post-title-input");
+   const modifPostContent = post.querySelector(".post-content-textarea");
+   const republishContainer = post.querySelector(".republish-btn-container");
+
+   // Edit Post
+   if(btn.textContent !== "Retour") {
+
+      btn.textContent = "Retour";
+      btn.classList.add("violet-btn");
+
+      postTitle.classList.add("erase");
+      postContent.classList.add("erase");
+      modifPostTitle.classList.remove("erase");
+      modifPostContent.classList.remove("erase");
+      republishContainer.classList.remove("erase");
+
+      modifPostTitle.focus();
+      modifPostTitle.value = postTitle.textContent;
+      modifPostContent.value = postContent.textContent;
+   }
+
+   // Back
+   else {
+      btn.textContent = "Modifier";
+      btn.classList.remove("violet-btn");
+
+      postTitle.classList.remove("erase");
+      postContent.classList.remove("erase");
+      modifPostTitle.classList.add("erase");
+      modifPostContent.classList.add("erase");
+      republishContainer.classList.add("erase");
+   }
 }
 
 
 // ===================================================================
 // Delete Post
 // ===================================================================
-const deletePost = (postID) => {
+const deletePost = (post) => {
 
-   ajaxRequest("deletePost", { id: postID });
+   ajaxRequest("deletePost", { id: post.id });
+   setTimeout(() => location.reload(), 100);
 }
 
 
 // ===================================================================
-// Several Buttons Loop
+// Post Buttons Event
 // ===================================================================
-const severalBtnsEvent = (allBtns, callback) => {
-   
-   if(allBtns) allBtns.forEach(btn => {
-      btn.addEventListener("click", (event) => {
-      
-         const postID = event.target.parentElement.parentElement.parentElement.id;
-         callback(postID);
-      });
-   });
+const postButtonsEvent = (post, btn, callback) => {
+
+   if(btn) btn.addEventListener("click", () => callback(post, btn));
 }
 
 
 window.addEventListener("load", () => {
-
+   
    customColorMenu();
    // logout();
    togglePublish();
    publishPost();
 
-   const allDeleteBtns = document.querySelectorAll(".delete-btn");
-   const allModifyBtns = document.querySelectorAll(".edit-btn");
-
-   severalBtnsEvent(allDeleteBtns, deletePost);
-   severalBtnsEvent(allModifyBtns, modifyPost);
+   const allPosts = document.querySelectorAll(".post");
+   
+   allPosts.forEach((post) => {
+      const modifBtn = post.querySelector(".edit-btn");
+      const deleteBtn = post.querySelector(".delete-btn");
+      const republishBtn = post.querySelector(".republish-btn");
+      
+      postButtonsEvent(post, modifBtn, modifyPost);
+      postButtonsEvent(post, deleteBtn, deletePost);
+      postButtonsEvent(post, republishBtn, republishPost);
+   });
 });

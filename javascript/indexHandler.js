@@ -26,13 +26,11 @@ const formSubmition = () => {
    const loginBtn = document.querySelector(".login-btn");
    const siginForm = document.querySelector(".signin-form");
    const signinBtn = document.querySelector(".signin-btn");
-   const loadingSpinner = document.querySelector(".backload");
 
    // Log inputFields
    const logUserName = document.getElementById("logUserName");
    const logEmail = document.getElementById("logEmail");
    const logPassword = document.getElementById("logPassword");
-   
 
    // Sign inputFields
    const signUserName = document.getElementById("signUserName");
@@ -44,23 +42,20 @@ const formSubmition = () => {
    // let loginFormData = new FormData(loginForm);
    // let signinFormData = new FormData(signinForm);
 
-   
-   loginBtn.addEventListener("click", (event) => {
-      // event.preventDefault();
-      loadingSpinner.classList.remove("hide");
-      
-      // loginFormData.set(logUserName.name, logUserName.value);
-      // loginFormData.set(logEmail.name, logEmail.value);
-      // loginFormData.set(logPassword.name, logPassword.value);
-
-      // loginFormData.forEach((key, value) => loginFormData[value] = key);
-
-      // console.log(loginFormData);
+   loginBtn.addEventListener("click", () => {
+      enableSpinner();
    });
    
-   signinBtn.addEventListener("click", (event) => {
-      // event.preventDefault();
-      loadingSpinner.classList.remove("hide");
+   signinBtn.addEventListener("click", () => {
+
+      // if(signUserName.value !== ""
+      // && signEmail.value !== ""
+      // && signConfirmEmail.value !== ""
+      // && signPassword.value !== ""
+      // && signConfirmPsw.value !== "") {
+
+      //    enableSpinner();
+      // }
    });
 }
 

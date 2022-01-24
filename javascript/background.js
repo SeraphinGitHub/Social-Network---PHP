@@ -28,6 +28,15 @@ const disableSpinner = () => {
 
 
 // ===================================================================
+// Enable Loading Spinner
+// ===================================================================
+const enableSpinner = () => {
+   const spinner = document.querySelector(".backload");
+   spinner.classList.remove("hide");
+}
+
+
+// ===================================================================
 // Hide Server Alert
 // ===================================================================
 const disableServerAlert = () => {
@@ -57,6 +66,5 @@ const formValidation = (formdata, inputField, regEx) => {
 
 
 window.addEventListener("load", () => {
-   disableSpinner();
    disableServerAlert();
 })

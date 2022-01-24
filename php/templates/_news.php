@@ -22,35 +22,50 @@
             <h2 class="flexCenter frame post-title"><?= strip_tags( $post["title"] )?></h2>
 
             <?php
-               if($post["createdAt"] === $post["updatedAt"]) { echo '
+               if($post["userID"] === $user["id"]) echo '
+                  <input class="flexCenter frame post-title-input erase">
+               ';
+
+               if($post["createdAt"] === $post["updatedAt"]) echo '
                   <h3 class="flexCenter frame post-time-stamp">
                      Publié le: '.date("d/m/Y à H:i:s", strtotime( $post["createdAt"] )).'
-                  </h3>';
-               }
+                  </h3>
+               ';
 
-               else { echo '
+               else echo '
                   <h3 class="flexCenter frame post-time-stamp">
                      Modifié le: '.date("d/m/Y à H:i:s", strtotime( $post["updatedAt"] )).'
-                  </h3> ';
-               }
+                  </h3>
+               ';
             ?>
          </figcaption>
          
 
          <!-- Buttons -->
          <?php
-            if($post["userID"] === $user["id"]) { echo '
+            if($post["userID"] === $user["id"]) echo '
                <div class="flexCenter post-btn-container">
                   <button class="flexCenter btn orange-btn edit-btn" type="button">Modifier</button>
                   <button class="flexCenter btn red-btn delete-btn" type="button">Supprimer</button>
-               </div>';
-            }
+               </div>
+            ';
          ?>         
          
       </figure>
             
       <!-- Text Content -->
       <p class="frame post-content"><?= strip_tags( $post["content"] )?></p>
+      
+      <?php
+         if($post["userID"] === $user["id"]) echo '
+            <textarea class="flexCenter frame post-content-textarea erase"></textarea>
+            
+            <div class="flexCenter republish-btn-container erase">
+               <button class="flexCenter btn orange-btn republish-image-btn" type="button">Ajouter une image</button>
+               <button class="flexCenter btn green-btn republish-btn" type="button">Re-publier</button>
+            </div>
+         ';
+      ?>  
    </li>
 
    <?php endforeach; ?>

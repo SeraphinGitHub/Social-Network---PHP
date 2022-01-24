@@ -8,7 +8,7 @@ class BrowserHandler {
       if(!isset( $_SESSION )) {
          
          $sessionLiftime = 48 *3600; // Hours
-         // $sessionLiftime = 3; // Hours
+         // $sessionLiftime = 5; // Seconds
          $path = "/";
          $domain = null;
          $secure = true;

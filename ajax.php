@@ -31,5 +31,5 @@ if(isset( $user ) && !empty( $user )
    if($name === "custom") $customClass -> saveCustom($user, $responseArray);
    if($name === "publishPost") $postClass -> publishPost($user, $responseArray);
    if($name === "deletePost") $postClass -> deletePost($user, $responseArray);
-   // if($name === "modifyPost") $postClass -> modifyPost($user, $responseArray);
+   if($name === "modifyPost") $postClass -> modifyPost($responseArray);
 }

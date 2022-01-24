@@ -44,6 +44,10 @@ body {
    text-align: center;
 }
 
+.erase {
+   display: none;
+}
+
 .hide {
    visibility: hidden !important;
 }
@@ -196,6 +200,12 @@ textarea {
 
 textarea {
    resize: none;
+}
+
+input:focus,
+textarea:focus {
+   border-color: red;
+   box-shadow: red inset 0 0 8px;
 }
 
 

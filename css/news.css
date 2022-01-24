@@ -75,6 +75,7 @@
 /* --- Post Infos --- */
 .post-userName,
 .post-title,
+.post-title-input,
 .post-time-stamp {
    height: 8px;
    width: 100%;
@@ -87,9 +88,14 @@
 }
 
 .post-title,
+.post-title-input,
 .post-time-stamp {
    font-size: 105%;
    word-spacing: 105%;
+}
+
+.post-title-input {
+   font-family: "Roboto-Medium";
 }
 
 
@@ -108,10 +114,26 @@
 
 
 /* --- Text Content --- */
-.post-content {
+.post-content,
+.post-content-textarea {
+   text-align: left;
    padding: 30px;
    white-space: pre-wrap;
    font-size: 120%;
    width: 100%;
    margin-top: 0;
+}
+
+.post-content-textarea {
+   height: 100px;
+   resize: vertical;
+   min-height: 100px;
+   max-height: 300px;
+}
+
+.republish-btn-container {
+   justify-content: space-around;
+   width: 100%;
+   margin: 15px;
+   margin-top: 0px;
 }

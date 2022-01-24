@@ -1,5 +1,5 @@
 
-<section class="flexCenter backload">
+<section class="flexCenter backload hide">
    <figure class="flexCenter spin-container">
       <img class="logo-top" src="public/LogoModified.jpg">
       <img class="logo-bottom" src="public/LogoModified.jpg">

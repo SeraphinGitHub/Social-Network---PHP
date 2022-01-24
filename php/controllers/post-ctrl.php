@@ -83,45 +83,36 @@ class Post extends Connect {
    }
 
 
-   function modifyPost($user, $responseArray) {
+   function modifyPost($responseArray) {
 
-      // $title = $responseArray["title"];
-      // $content = $responseArray["content"];
+      $postID = $responseArray["id"];
+      $title = $responseArray["title"];
+      $content = $responseArray["content"];
 
-      // if(isset( $title ) && !empty( $title )
-      // && filter_var( $title, FILTER_VALIDATE_REGEXP, $this -> textRegEx )
-      // && isset( $content ) && !empty( $content )
-      // && filter_var( $content, FILTER_VALIDATE_REGEXP, $this -> textRegEx )) {
+      if(isset( $title ) && !empty( $title )
+      && filter_var( $title, FILTER_VALIDATE_REGEXP, $this -> textRegEx )
+      && isset( $content ) && !empty( $content )
+      && filter_var( $content, FILTER_VALIDATE_REGEXP, $this -> textRegEx )) {
       
-      //    try {
-      //       $sql = "INSERT INTO posts (
-      //          userID,
-      //          title,
-      //          content,
-      //          imageURL,
-      //          createdAt,
-      //          updatedAt)
-
-      //          VALUES (
-      //          :userID,
-      //          :title,
-      //          :content,
-      //          '',
-      //          now(),
-      //          now()
-      //       )";
+         try {
+            $sql = "UPDATE posts SET
+               title = :title,
+               content = :content,
+               updatedAt = now()
+               WHERE id = :postID
+            ";
             
-      //       $request = $this -> dbConn() -> prepare($sql);
-      //       $request -> bindValue(":userID", $user["id"], PDO::PARAM_INT);
-      //       $request -> bindValue(":title", $title, PDO::PARAM_STR);
-      //       $request -> bindValue(":content", $content, PDO::PARAM_STR);
-      //       $request -> execute();
-      //    }
+            $request = $this -> dbConn() -> prepare($sql);
+            $request -> bindValue(":postID", $postID, PDO::PARAM_INT);
+            $request -> bindValue(":title", $title, PDO::PARAM_STR);
+            $request -> bindValue(":content", $content, PDO::PARAM_STR);
+            $request -> execute();
+         }
 
-      //    catch(PDOException $except) {
-      //       die($except -> getMessage());
-      //    }
-      // }
+         catch(PDOException $except) {
+            die($except -> getMessage());
+         }
+      }
    }
 
 
